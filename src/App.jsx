@@ -1,9 +1,10 @@
 import "./App.css";
+import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <main className="App">
-      <h1>Anime attire</h1>
+    <main id="main">
+      <Navbar />
     </main>
   );
 }

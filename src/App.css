@@ -1,7 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Kanit:wght@400;600&display=swap");
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+:root {
+  --black: #000;
+  --white: #f2f2f2;
+  --light-grey: #b2b2b2;
+  --grey-text: #2c3333;
+}
+body {
+  background-color: var(--white);
+}
+#main {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
