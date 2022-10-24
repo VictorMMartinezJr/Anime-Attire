@@ -44,13 +44,12 @@ export const Navbar = () => {
     }
     if (target.classList.contains("nav__link__label--womens")) {
       setDropdownWomensActive(!dropdownWomensActive);
-      console.log("clicked");
     }
   };
 
   return (
     <nav id="nav">
-      <div className="nav__title">
+      <div className="nav__title container">
         <h2 className="nav__name">ANIME ATTIRE</h2>
         <img src={navLogo} alt="" className="nav__logo" />
       </div>
@@ -126,7 +125,7 @@ export const Navbar = () => {
       </ul>
 
       {/* Icons  */}
-      <div className="nav__icons">
+      <div className="nav__icons container">
         <CiSearch
           className="nav__icon nav__icon--search"
           onClick={toggleSearchBar}

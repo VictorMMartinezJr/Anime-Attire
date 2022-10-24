@@ -1,0 +1,93 @@
+#banner__section {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  background-image: url(../../assets/demonslayer-banner.jpg);
+  background-position: center;
+  background-size: cover;
+  color: var(--white);
+  font-family: "Kanit", sans-serif;
+}
+#banner__section::after {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  z-index: -1;
+}
+.banner__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.banner__title {
+  color: var(--white);
+  font-weight: 400;
+}
+.banner__subtitle {
+  margin: 0.5rem 0;
+}
+.banner__btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+}
+
+/** Media Queries **/
+@media screen and (min-width: 390px) {
+  .banner__content {
+    align-items: flex-start;
+  }
+  .banner__title {
+    font-size: 2rem;
+  }
+  .banner__subtitle {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 500px) {
+  #banner__section {
+    height: 50vh;
+  }
+}
+@media screen and (min-width: 768px) {
+  .banner__title {
+    font-size: 3rem;
+  }
+  .banner__subtitle {
+    font-size: 1.5rem;
+  }
+  .banner__btn {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #banner__section {
+    height: 90vh;
+  }
+  .banner__title {
+    font-size: 4rem;
+  }
+  .banner__subtitle {
+    font-size: 2rem;
+  }
+  .banner__btn {
+    font-size: 1.5rem;
+  }
+  .banner__content {
+    align-items: flex-start;
+    margin-left: 1rem;
+  }
+}

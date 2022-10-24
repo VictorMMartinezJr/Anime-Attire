@@ -21,3 +21,17 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+.container {
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    padding: 0 4rem;
+  }
+}
