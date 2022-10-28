@@ -1,0 +1,12 @@
+.page__container {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Kanit", sans-serif;
+}
+.page__title {
+  text-align: center;
+  margin-top: 2rem;
+}
