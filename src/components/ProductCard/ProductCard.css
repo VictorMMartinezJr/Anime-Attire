@@ -32,19 +32,24 @@
     margin: 1rem;
   }
 }
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 500px) {
   .product__card {
-    width: 230px;
+    width: 200px;
     margin: 2rem 1rem;
   }
 }
 @media screen and (min-width: 768px) {
   .product__card {
-    width: 300px;
+    width: 250px;
   }
 }
 @media screen and (min-width: 1024px) {
   .product__card {
     margin: 2rem;
+  }
+}
+@media screen and (min-width: 1536px) {
+  .product__card {
+    width: 300px;
   }
 }
