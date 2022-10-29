@@ -51,5 +51,6 @@
 @media screen and (min-width: 1536px) {
   .product__card {
     width: 300px;
+    margin: 2rem 3rem;
   }
 }
