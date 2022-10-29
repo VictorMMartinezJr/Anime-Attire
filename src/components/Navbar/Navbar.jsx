@@ -37,12 +37,13 @@ export const Navbar = () => {
 
   const toggleDropdown = (e) => {
     closeDropdowns();
-    const target = e.target.parentNode;
+    const target = e.target.parentElement;
+    const gender = target.getAttribute("data-gender");
 
-    if (target.classList.contains("nav__link__label--mens")) {
+    if (gender === "mens") {
       setDropdownMensActive(!dropdownMensActive);
     }
-    if (target.classList.contains("nav__link__label--womens")) {
+    if (gender === "womens") {
       setDropdownWomensActive(!dropdownWomensActive);
     }
   };
@@ -64,9 +65,13 @@ export const Navbar = () => {
         {/* Dropdown Link */}
         <li
           className="nav__link nav__link--with-dropdown"
+          data-gender="mens"
           onClick={(e) => toggleDropdown(e)}
         >
-          <div className="nav__link__label nav__link__label--mens">
+          <div
+            className="nav__link__label nav__link__label--mens"
+            data-gender="mens"
+          >
             <p>MENS</p>
             <MdOutlineKeyboardArrowDown
               className={`nav__links__icon nav__links__icon--arrow ${
@@ -84,9 +89,13 @@ export const Navbar = () => {
 
         <li
           className="nav__link nav__link--with-dropdown"
+          data-gender="womens"
           onClick={(e) => toggleDropdown(e)}
         >
-          <div className="nav__link__label nav__link__label--womens">
+          <div
+            className="nav__link__label nav__link__label--womens"
+            data-gender="womens"
+          >
             <p>WOMENS</p>
             <MdOutlineKeyboardArrowDown
               className={`nav__links__icon nav__links__icon--arrow ${
