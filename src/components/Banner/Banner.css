@@ -9,7 +9,6 @@
   background-position: center;
   background-size: cover;
   color: var(--white);
-  font-family: "Kanit", sans-serif;
 }
 #banner__section::after {
   content: "";

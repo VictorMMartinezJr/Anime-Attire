@@ -16,6 +16,7 @@
 }
 body {
   background-color: var(--white);
+  font-family: "Kanit", sans-serif;
 }
 #main {
   min-height: 100vh;

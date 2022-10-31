@@ -4,6 +4,7 @@ import Banner from "./components/Banner/Banner";
 import { Navbar } from "./components/Navbar/Navbar";
 import Home from "./Pages/Home";
 import ProductDetails from "./Pages/ProductDetails";
+import ShopLinks from "./components/ShopLink/ShopLinks";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
+        <ShopLinks />
       </Router>
     </main>
   );

@@ -1,0 +1,52 @@
+#shoplinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/** Individual ShopLink **/
+#shoplink {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  isolation: isolate;
+}
+#shoplink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+.shoplink__link {
+  border: 1px solid var(--white);
+  color: var(--white);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/** Media Queries**/
+@media screen and (min-width: 360px) {
+  .shoplink__link {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #shoplinks {
+    flex-direction: row;
+  }
+  #shoplink {
+    height: 85vh;
+    background-size: cover;
+  }
+}
