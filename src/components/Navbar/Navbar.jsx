@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { useState } from "react";
-import navLogo from "../../assets/nav-logo.png";
+import mobileNavLogo from "../../assets/nav-logo.png";
+import navLogo from "../../assets/logo.png";
 import { CiSearch } from "react-icons/ci";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { BsCart2 } from "react-icons/bs";
@@ -51,8 +52,13 @@ export const Navbar = () => {
   return (
     <nav id="nav">
       <div className="nav__title container">
-        <h2 className="nav__name">ANIME ATTIRE</h2>
-        <img src={navLogo} alt="" className="nav__logo" />
+        {/* <h2 className="nav__name">ANIME ATTIRE</h2> */}
+        <img src={mobileNavLogo} alt="" className="nav__logo--mobile" />
+        <img
+          src={navLogo}
+          alt="Kid Goku making peace sign"
+          className="nav__logo"
+        />
       </div>
 
       {/* Nav Links */}

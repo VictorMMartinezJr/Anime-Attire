@@ -20,6 +20,9 @@
 .nav__logo {
   display: none;
 }
+.nav__logo--mobile {
+  height: 40px;
+}
 /** Icons **/
 .nav__icons {
   display: flex;
@@ -77,6 +80,7 @@
 .nav__links__icon {
   font-size: 1rem;
   color: var(--black);
+  cursor: pointer;
 }
 .nav__links__icon--close {
   align-self: flex-end;
@@ -144,10 +148,11 @@
     font-size: 1.5rem;
   }
   .nav__logo {
-    display: inline-block;
+    display: block;
     height: 50px;
-    position: absolute;
-    right: -25px;
+  }
+  .nav__logo--mobile {
+    display: none;
   }
 }
 @media screen and (min-width: 540px) {
@@ -165,6 +170,11 @@
     width: 60%;
   }
 }
+@media screen and (min-width: 768px) {
+  .nav__logo {
+    height: 60px;
+  }
+}
 @media screen and (min-width: 1024px) {
   .nav__icon--burger {
     display: none;
@@ -178,6 +188,7 @@
     position: static;
     background-color: transparent;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     height: 100%;
     transform: translateX(0);
@@ -232,15 +243,11 @@
 
 @media screen and (min-width: 1280px) {
   .nav__logo {
-    display: inline-block;
-    height: 60px;
-    position: absolute;
-    right: 0;
+    height: 70px;
   }
   .nav__icon--search {
     margin-right: 2rem;
   }
-
   /** Nav Links **/
   .nav__link {
     margin: 0 2rem;
