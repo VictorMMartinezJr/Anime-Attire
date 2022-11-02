@@ -248,8 +248,4 @@
   .nav__icon--search {
     margin-right: 2rem;
   }
-  /** Nav Links **/
-  .nav__link {
-    margin: 0 2rem;
-  }
 }

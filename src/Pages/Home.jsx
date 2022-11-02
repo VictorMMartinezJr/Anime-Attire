@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import "./Pages.css";
 
@@ -15,24 +16,27 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="page__container" id="home__section">
-      <h2 className="page__title">The 2022 Summer Collection</h2>
-      {/* Products */}
-      <div className="page__products">
-        {products &&
-          products.map((product, i) => {
-            return (
-              <ProductCard
-                key={i}
-                id={product.id}
-                img={product.img}
-                title={product.title}
-                price={product.price}
-              />
-            );
-          })}
-      </div>
-    </section>
+    <>
+      <Banner />
+      <section className="page__container" id="home__section">
+        <h2 className="page__title">The 2022 Summer Collection</h2>
+        {/* Products */}
+        <div className="page__products">
+          {products &&
+            products.map((product, i) => {
+              return (
+                <ProductCard
+                  key={i}
+                  id={product.id}
+                  img={product.img}
+                  title={product.title}
+                  price={product.price}
+                />
+              );
+            })}
+        </div>
+      </section>
+    </>
   );
 };
 
