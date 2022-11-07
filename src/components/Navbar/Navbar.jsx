@@ -14,16 +14,30 @@ import {
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [navLinksActive, setNavLinksActive] = useState(false);
+  const [cartMenuActive, setCartMenuActive] = useState(false);
   const [dropdownMensActive, setDropdownMensActive] = useState(false);
   const [dropdownWomensActive, setDropdownWomensActive] = useState(false);
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const itemSize = useSelector((state) => state.cart.size);
 
   const toggleSearchBar = () => {
     closeDropdowns();
     setSearchActive(!searchActive);
+  };
+
+  const toggleCartMenu = () => {
+    setCartMenuActive(!cartMenuActive);
+  };
+
+  const closeCartMenu = () => {
+    setCartMenuActive(false);
   };
 
   const toggleNavLinks = () => {
@@ -49,17 +63,20 @@ export const Navbar = () => {
     }
   };
 
+  console.log(cartItems);
+
   return (
     <nav id="nav">
-      <div className="nav__title container">
-        {/* <h2 className="nav__name">ANIME ATTIRE</h2> */}
-        <img src={mobileNavLogo} alt="" className="nav__logo--mobile" />
-        <img
-          src={navLogo}
-          alt="Kid Goku making peace sign"
-          className="nav__logo"
-        />
-      </div>
+      <Link to="/">
+        <div className="nav__title container">
+          <img src={mobileNavLogo} alt="" className="nav__logo--mobile" />
+          <img
+            src={navLogo}
+            alt="Kid Goku making peace sign"
+            className="nav__logo"
+          />
+        </div>
+      </Link>
 
       {/* Nav Links */}
       <ul className={`nav__links ${navLinksActive ? "active" : ""}`}>
@@ -149,7 +166,51 @@ export const Navbar = () => {
           className="nav__icon nav__icon--burger"
           onClick={toggleNavLinks}
         />
-        <BsCart2 className="nav__icon nav__icon--cart" />
+        {/* Cart Icon */}
+        <div className="cart__icon__container" onClick={toggleCartMenu}>
+          <BsCart2 className="nav__icon nav__icon--cart" />
+          {cartItems.length > 0 && (
+            <span className="cart__item__number">{cartItems.length}</span>
+          )}
+        </div>
+      </div>
+
+      {/* Cart Menu */}
+      <div className={`nav__cart__menu ${cartMenuActive && "active"}`}>
+        <div className="nav__cart__menu__header">
+          <p>Cart</p>
+          <AiOutlineClose onClick={closeCartMenu} />
+        </div>
+        {cartItems.length > 0 ? (
+          <ul className="nav__cart__menu__items">
+            {cartItems.map((item, i) => {
+              return (
+                <li key={i} className="nav__cart__menu__item">
+                  <img src={item.img} alt="" className="nav__cart__menu__img" />
+                  <div className="nav__cart__menu__info">
+                    <p className="nav__cart__menu__title">{item.title}</p>
+                    <p className="nav__cart__menu__size">{item.size}</p>
+                    <p className="nav__cart__menu__price">${item.price}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="nav__cart__menu__emptytext">Cart is empty</p>
+        )}
+        {cartItems.length > 0 && (
+          <div className="nav__cart__menu__footer">
+            <div className="nav__cart__menu__footer__total__container">
+              <p className="nav__cart__menu__footer__total__text">SUBTOTAL</p>
+              <p className="nav__cart__menu__footer__total__number">$40.99</p>
+            </div>
+            <p className="nav__cart__menu__footer__smalltext">
+              Shipping, taxes, and discount codes calculated at checkout
+            </p>
+            <button className="nav__cart__menu__footer__btn">Checkout</button>
+          </div>
+        )}
       </div>
 
       {/* Hidden Search */}

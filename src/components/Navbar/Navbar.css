@@ -36,6 +36,106 @@
 .nav__icon--burger {
   margin: 0 1rem;
 }
+/* Cart Menu */
+.nav__cart__menu {
+  position: absolute;
+  height: 100vh;
+  overflow: scroll;
+  top: 0%;
+  right: 0;
+  transform: translateX(100%);
+  width: 85%;
+  background-color: var(--white);
+  color: var(--black);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+.nav__cart__menu.active {
+  transform: translateX(0);
+  z-index: 2;
+}
+.nav__cart__menu__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+}
+.nav__cart__menu__img {
+  height: 90px;
+}
+.nav__cart__menu__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.nav__cart__menu__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.nav__cart__menu__info {
+  margin-left: 1rem;
+  flex: 1;
+}
+.nav__cart__menu__emptytext {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+/* Cart Footer */
+.nav__cart__menu__footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 5;
+}
+.nav__cart__menu__footer__total__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  width: 100%;
+}
+.nav__cart__menu__footer__smalltext {
+  font-size: 0.8rem;
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+}
+.nav__cart__menu__footer__btn {
+  margin: 1rem;
+  padding: 1rem 0;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: inherit;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.cart__icon__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.cart__item__number {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /** Nav Links **/
 .nav__links {
@@ -52,6 +152,7 @@
 }
 .nav__links.active {
   transform: translateX(0%);
+  z-index: 2;
 }
 .nav__link {
   list-style: none;
@@ -173,6 +274,11 @@
 @media screen and (min-width: 768px) {
   .nav__logo {
     height: 60px;
+  }
+
+  /* Cart Menu */
+  .nav__cart__menu {
+    width: 350px;
   }
 }
 @media screen and (min-width: 1024px) {
