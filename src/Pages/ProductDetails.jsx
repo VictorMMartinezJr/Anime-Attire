@@ -1,11 +1,15 @@
 import "./Pages.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addtoCart, updateSize } from "../features/cart/cartSlice";
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  const [activeSize, setActiveSize] = useState(null);
+  const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
 
   const sizeData = [
@@ -35,17 +39,24 @@ const ProductDetails = () => {
     window.scrollTo(0, 0);
   };
 
+  // Fetch product to display
   const fetchProduct = async () => {
     const resp = await fetch("../data.json");
     const data = await resp.json();
-
     setProduct(data[id - 1]);
   };
 
+  // Add active class to clicked size
   const addActiveSize = (e) => {
     const target = e.target;
     setActiveSize(target.textContent);
     target.classList.add("active");
+  };
+
+  // Add product to cart
+  const addItemToCart = () => {
+    let updatedProduct = { ...product, size: activeSize };
+    dispatch(addtoCart(updatedProduct));
   };
 
   // Update Quantity Functions
@@ -111,7 +122,12 @@ const ProductDetails = () => {
               </button>
             </div>
           </div>
-          <button className="page__details__btn__addtocart">Add to cart</button>
+          <button
+            className="page__details__btn__addtocart"
+            onClick={addItemToCart}
+          >
+            Add to cart
+          </button>
         </div>
       </div>
     </div>
