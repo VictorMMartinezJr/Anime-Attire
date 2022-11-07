@@ -16,6 +16,8 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CartMenu from "./CartMenu";
+import HiddenSearch from "./HiddenSearch";
 
 export const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -34,9 +36,6 @@ export const Navbar = () => {
   // Toggle cart menu
   const toggleCartMenu = () => {
     setCartMenuActive(!cartMenuActive);
-  };
-  const closeCartMenu = () => {
-    setCartMenuActive(false);
   };
 
   // Toggle navLinks & dropdowns
@@ -88,7 +87,10 @@ export const Navbar = () => {
           className="nav__links__icon nav__links__icon--close"
           onClick={toggleNavLinks}
         />
+        {/* Link 1 */}
         <li className="nav__link">NEWEST DROP</li>
+
+        {/* Mens Links */}
         {/* Dropdown Link */}
         <li className="nav__link nav__link--with-dropdown" data-gender="mens">
           <div
@@ -104,9 +106,11 @@ export const Navbar = () => {
             />
           </div>
           <ul className={`nav__dropdown ${dropdownMensActive ? "active" : ""}`}>
+            {/* Dropdown Link 1 */}
             <Link to="/mens" className="router__link" onClick={closeNavLinks}>
               <li className="nav__link nav__link--dropdown">All</li>
             </Link>
+            {/* Dropdown Link 2 */}
             <Link
               to="/mens-tees"
               className="router__link"
@@ -114,6 +118,7 @@ export const Navbar = () => {
             >
               <li className="nav__link nav__link--dropdown">Tees</li>
             </Link>
+            {/* Dropdown Link 3 */}
             <Link
               to="/mens-hoodies"
               className="router__link"
@@ -123,8 +128,8 @@ export const Navbar = () => {
             </Link>
           </ul>
         </li>
+        {/* Womens Links */}
         {/* Dropdown Link */}
-
         <li className="nav__link nav__link--with-dropdown" data-gender="womens">
           <div
             className="nav__link__label nav__link__label--womens"
@@ -141,9 +146,11 @@ export const Navbar = () => {
           <ul
             className={`nav__dropdown ${dropdownWomensActive ? "active" : ""}`}
           >
+            {/* Dropdown Link 1 */}
             <Link to="/womens" className="router__link" onClick={closeNavLinks}>
               <li className="nav__link nav__link--dropdown">All</li>
             </Link>
+            {/* Dropdown Link 2 */}
             <Link
               to="/womens-tees"
               className="router__link"
@@ -151,6 +158,7 @@ export const Navbar = () => {
             >
               <li className="nav__link nav__link--dropdown">Tees</li>
             </Link>
+            {/* Dropdown Link 3 */}
             <Link
               to="/womens-hoodies"
               className="router__link"
@@ -160,8 +168,9 @@ export const Navbar = () => {
             </Link>
           </ul>
         </li>
-        <li className="nav__link">ACCESSORIES</li>
 
+        {/* Link 4 */}
+        <li className="nav__link">ACCESSORIES</li>
         {/* Socials */}
         <ul className="nav__links__socials">
           <li className="nav__links__social">
@@ -202,56 +211,17 @@ export const Navbar = () => {
       </div>
 
       {/* Cart Menu */}
-      <div className={`nav__cart__menu ${cartMenuActive && "active"}`}>
-        <div className="nav__cart__menu__header">
-          <p>Cart</p>
-          <AiOutlineClose onClick={closeCartMenu} />
-        </div>
-        {cartItems.length > 0 ? (
-          <ul className="nav__cart__menu__items">
-            {cartItems.map((item, i) => {
-              return (
-                <li key={i} className="nav__cart__menu__item">
-                  <img src={item.img} alt="" className="nav__cart__menu__img" />
-                  <div className="nav__cart__menu__info">
-                    <p className="nav__cart__menu__title">{item.title}</p>
-                    <p className="nav__cart__menu__size">{item.size}</p>
-                    <p className="nav__cart__menu__price">${item.price}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p className="nav__cart__menu__emptytext">Cart is empty</p>
-        )}
-        {cartItems.length > 0 && (
-          <div className="nav__cart__menu__footer">
-            <div className="nav__cart__menu__footer__total__container">
-              <p className="nav__cart__menu__footer__total__text">SUBTOTAL</p>
-              <p className="nav__cart__menu__footer__total__number">$40.99</p>
-            </div>
-            <p className="nav__cart__menu__footer__smalltext">
-              Shipping, taxes, and discount codes calculated at checkout
-            </p>
-            <button className="nav__cart__menu__footer__btn">Checkout</button>
-          </div>
-        )}
-      </div>
+      <CartMenu
+        cartMenuActive={cartMenuActive}
+        setCartMenuActive={setCartMenuActive}
+        cartItems={cartItems}
+      />
 
       {/* Hidden Search */}
-      <form className={`nav__search__form ${searchActive ? "active" : ""}`}>
-        <CiSearch className="nav__search__input__icon" />
-        <input
-          type="text"
-          placeholder="Search our store"
-          className="nav__search__input"
-        />
-        <AiOutlineClose
-          className="nav__search__input__icon"
-          onClick={toggleSearchBar}
-        />
-      </form>
+      <HiddenSearch
+        searchActive={searchActive}
+        toggleSearchBar={toggleSearchBar}
+      />
     </nav>
   );
 };
