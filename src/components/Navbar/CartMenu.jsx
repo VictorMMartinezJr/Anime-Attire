@@ -1,13 +1,17 @@
 import "./Navbar.css";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
   const closeCartMenu = () => {
     setCartMenuActive(false);
   };
 
+  // Get total of all current items in cart
+  const cartTotal = cartItems.reduce((acc, curr) => {
+    return acc + Number(curr.price);
+  }, 0);
+
+  console.log(cartTotal);
   return (
     <div className={`nav__cart__menu ${cartMenuActive && "active"}`}>
       <div className="nav__cart__menu__header">
@@ -39,7 +43,9 @@ const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
         <div className="nav__cart__menu__footer">
           <div className="nav__cart__menu__footer__total__container">
             <p className="nav__cart__menu__footer__total__text">SUBTOTAL</p>
-            <p className="nav__cart__menu__footer__total__number">$40.99</p>
+            <p className="nav__cart__menu__footer__total__number">
+              ${cartTotal.toFixed(2)}
+            </p>
           </div>
           <p className="nav__cart__menu__footer__smalltext">
             Shipping, taxes, and discount codes calculated at checkout

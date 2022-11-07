@@ -7,17 +7,11 @@ import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaTiktok,
-  FaYoutube,
-} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartMenu from "./CartMenu";
 import HiddenSearch from "./HiddenSearch";
+import Socials from "./Socials";
 
 export const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -26,8 +20,10 @@ export const Navbar = () => {
   const [dropdownMensActive, setDropdownMensActive] = useState(false);
   const [dropdownWomensActive, setDropdownWomensActive] = useState(false);
 
+  // Global Redux Cart Items
   const cartItems = useSelector((state) => state.cart.cartItems);
 
+  // Toggle hidden search bar
   const toggleSearchBar = () => {
     closeDropdowns();
     setSearchActive(!searchActive);
@@ -47,7 +43,6 @@ export const Navbar = () => {
     closeDropdowns();
     setNavLinksActive(false);
   };
-
   const closeDropdowns = () => {
     setDropdownWomensActive(false);
     setDropdownMensActive(false);
@@ -57,7 +52,6 @@ export const Navbar = () => {
     closeDropdowns();
     const target = e.target.parentElement;
     const gender = target.getAttribute("data-gender");
-    console.log("Ran");
 
     console.log(target);
     if (gender === "mens") {
@@ -172,23 +166,7 @@ export const Navbar = () => {
         {/* Link 4 */}
         <li className="nav__link">ACCESSORIES</li>
         {/* Socials */}
-        <ul className="nav__links__socials">
-          <li className="nav__links__social">
-            <FaFacebookF className="nav__links__icon nav__icon nav__icon--social" />
-          </li>
-          <li className="nav__links__social">
-            <FaTwitter className="nav__links__icon nav__icon--social" />
-          </li>
-          <li className="nav__links__social">
-            <FaInstagram className="nav__links__icon nav__icon--social" />
-          </li>
-          <li className="nav__links__social">
-            <FaTiktok className="nav__links__icon nav__icon--social" />
-          </li>
-          <li className="nav__links__social">
-            <FaYoutube className="nav__links__icon nav__icon--social" />
-          </li>
-        </ul>
+        <Socials />
       </ul>
 
       {/* Icons  */}
