@@ -9,7 +9,7 @@ const ProductCard = ({ id, img, title, price }) => {
       </Link>
       <div className="product__card__info">
         <p className="product__card__title">{title}</p>
-        <p className="product__card__price">{price}</p>
+        <p className="product__card__price">${price}</p>
       </div>
     </div>
   );

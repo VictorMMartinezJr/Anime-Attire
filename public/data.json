@@ -3,7 +3,6 @@
     "id": 1,
     "title": "My Hero Academia Deku Hoodie",
     "img": "./src/assets/mensProducts/hoodies/deku-hoodie.jpg",
-    "imgAlt": "./src/assets/mensProducts/hoodies/deku-hoodie-alt.jpg",
     "price": "49.99",
     "type": "hoodie",
     "gender": "mens",
@@ -13,7 +12,6 @@
     "id": 2,
     "title": "Dragon Ball Z Gohan Eyes Hoodie",
     "img": "./src/assets/mensProducts/hoodies/gohan-hoodie.jpg",
-    "imgAlt": "./src/assets/mensProducts/hoodies/gohan-hoodie-alt.jpg",
     "price": "40.99",
     "type": "hoodie",
     "gender": "mens",
@@ -23,7 +21,6 @@
     "id": 3,
     "title": "YuYu Hakusho Hiei Hoodie",
     "img": "./src/assets/mensProducts/hoodies/hakunsho-hiei-hoodie.jpg",
-    "imgAlt": "./src/assets/mensProducts/hoodies/hakunsho-hiei-hoodie-alt.jpg",
     "price": "44.90",
     "type": "hoodie",
     "gender": "mens",
@@ -33,7 +30,6 @@
     "id": 4,
     "title": "Demon Slayer: Kimetsu No Yaiba Trio Hoodie",
     "img": "./src/assets/mensProducts/hoodies/demonslayer-hoodie.jpg",
-    "imgAlt": "./src/assets/mensProducts/hoodies/demonslayer-hoodie-alt.jpg",
     "price": "39.99",
     "type": "hoodie",
     "gender": "mens",
@@ -43,9 +39,53 @@
     "id": 5,
     "title": "Naruto Shippuden Split Hoodie",
     "img": "./src/assets/mensProducts/hoodies/naruto-hoodie.jpg",
-    "imgAlt": "./src/assets/mensProducts/hoodies/naruto-hoodie-alt.jpg",
     "price": "64.99",
     "type": "hoodie",
+    "gender": "mens",
+    "new": true
+  },
+  {
+    "id": 6,
+    "title": "Tokyo Ghoul Kaneki Split Face",
+    "img": "./src/assets/mensProducts/tees/tokyo-ghoul.jpg",
+    "price": "20.90",
+    "type": "tee",
+    "gender": "mens",
+    "new": true
+  },
+  {
+    "id": 7,
+    "title": "Attack On Titan Scout Regiment",
+    "img": "./src/assets/mensProducts/tees/aot.jpg",
+    "price": "24.50",
+    "type": "tee",
+    "gender": "mens",
+    "new": false
+  },
+  {
+    "id": 8,
+    "title": "Metallica The Shortest Straw Tie-Dye",
+    "img": "./src/assets/mensProducts/tees/metallica.jpg",
+    "price": "30.99",
+    "type": "tee",
+    "gender": "mens",
+    "new": true
+  },
+  {
+    "id": 9,
+    "title": "Stranger Things Hellfire Club Christmas",
+    "img": "./src/assets/mensProducts/tees/hellfireclub.jpg",
+    "price": "20.99",
+    "type": "tee",
+    "gender": "mens",
+    "new": true
+  },
+  {
+    "id": 10,
+    "title": "Stranger Things Hellfire Club Christmas",
+    "img": "./src/assets/mensProducts/tees/naruto-eyes.jpg",
+    "price": "27.90",
+    "type": "tee",
     "gender": "mens",
     "new": true
   }

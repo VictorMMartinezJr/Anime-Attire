@@ -9,6 +9,72 @@
   text-align: center;
   margin-top: 2rem;
 }
+.page__title--mens {
+  margin-top: 0;
+}
+.page__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+.page__filter__container {
+  position: relative;
+}
+.page__filter__labelbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--black);
+  background-color: transparent;
+  cursor: pointer;
+}
+.page__filter__labelbtn.active {
+  border-bottom: none;
+}
+.page__filter__arrow {
+  margin-left: 0.5rem;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+.page__filter__arrow.active {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+}
+.page__filter__options {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: var(--white);
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.page__filter__options.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(10px);
+}
+.page__filter__option {
+  border: none;
+  text-align: left;
+  position: relative;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+.page__filter__option::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: var(--black);
+  left: 0;
+  bottom: -10px;
+}
 .page__products {
   display: grid;
   grid-template-columns: 1fr;

@@ -149,6 +149,10 @@
   width: 85%;
   background-color: var(--white);
   transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+}
+.router__link {
+  text-decoration: none;
 }
 .nav__links.active {
   transform: translateX(0%);

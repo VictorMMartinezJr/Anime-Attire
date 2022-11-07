@@ -25,24 +25,28 @@ export const Navbar = () => {
   const [dropdownWomensActive, setDropdownWomensActive] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const itemSize = useSelector((state) => state.cart.size);
 
   const toggleSearchBar = () => {
     closeDropdowns();
     setSearchActive(!searchActive);
   };
 
+  // Toggle cart menu
   const toggleCartMenu = () => {
     setCartMenuActive(!cartMenuActive);
   };
-
   const closeCartMenu = () => {
     setCartMenuActive(false);
   };
 
+  // Toggle navLinks & dropdowns
   const toggleNavLinks = () => {
     closeDropdowns();
     setNavLinksActive(!navLinksActive);
+  };
+  const closeNavLinks = () => {
+    closeDropdowns();
+    setNavLinksActive(false);
   };
 
   const closeDropdowns = () => {
@@ -54,7 +58,9 @@ export const Navbar = () => {
     closeDropdowns();
     const target = e.target.parentElement;
     const gender = target.getAttribute("data-gender");
+    console.log("Ran");
 
+    console.log(target);
     if (gender === "mens") {
       setDropdownMensActive(!dropdownMensActive);
     }
@@ -62,8 +68,6 @@ export const Navbar = () => {
       setDropdownWomensActive(!dropdownWomensActive);
     }
   };
-
-  console.log(cartItems);
 
   return (
     <nav id="nav">
@@ -86,14 +90,11 @@ export const Navbar = () => {
         />
         <li className="nav__link">NEWEST DROP</li>
         {/* Dropdown Link */}
-        <li
-          className="nav__link nav__link--with-dropdown"
-          data-gender="mens"
-          onClick={(e) => toggleDropdown(e)}
-        >
+        <li className="nav__link nav__link--with-dropdown" data-gender="mens">
           <div
             className="nav__link__label nav__link__label--mens"
             data-gender="mens"
+            onClick={(e) => toggleDropdown(e)}
           >
             <p>MENS</p>
             <MdOutlineKeyboardArrowDown
@@ -103,21 +104,32 @@ export const Navbar = () => {
             />
           </div>
           <ul className={`nav__dropdown ${dropdownMensActive ? "active" : ""}`}>
-            <li className="nav__link nav__link--dropdown">All</li>
-            <li className="nav__link nav__link--dropdown">Tops</li>
-            <li className="nav__link nav__link--dropdown">Hoodies</li>
+            <Link to="/mens" className="router__link" onClick={closeNavLinks}>
+              <li className="nav__link nav__link--dropdown">All</li>
+            </Link>
+            <Link
+              to="/mens-tees"
+              className="router__link"
+              onClick={closeNavLinks}
+            >
+              <li className="nav__link nav__link--dropdown">Tees</li>
+            </Link>
+            <Link
+              to="/mens-hoodies"
+              className="router__link"
+              onClick={closeNavLinks}
+            >
+              <li className="nav__link nav__link--dropdown">Hoodies</li>
+            </Link>
           </ul>
         </li>
         {/* Dropdown Link */}
 
-        <li
-          className="nav__link nav__link--with-dropdown"
-          data-gender="womens"
-          onClick={(e) => toggleDropdown(e)}
-        >
+        <li className="nav__link nav__link--with-dropdown" data-gender="womens">
           <div
             className="nav__link__label nav__link__label--womens"
             data-gender="womens"
+            onClick={(e) => toggleDropdown(e)}
           >
             <p>WOMENS</p>
             <MdOutlineKeyboardArrowDown
@@ -129,9 +141,23 @@ export const Navbar = () => {
           <ul
             className={`nav__dropdown ${dropdownWomensActive ? "active" : ""}`}
           >
-            <li className="nav__link nav__link--dropdown">All</li>
-            <li className="nav__link nav__link--dropdown">Tops</li>
-            <li className="nav__link nav__link--dropdown">Hoodies</li>
+            <Link to="/womens" className="router__link" onClick={closeNavLinks}>
+              <li className="nav__link nav__link--dropdown">All</li>
+            </Link>
+            <Link
+              to="/womens-tees"
+              className="router__link"
+              onClick={closeNavLinks}
+            >
+              <li className="nav__link nav__link--dropdown">Tees</li>
+            </Link>
+            <Link
+              to="/womens-hoodies"
+              className="router__link"
+              onClick={closeNavLinks}
+            >
+              <li className="nav__link nav__link--dropdown">Hoodies</li>
+            </Link>
           </ul>
         </li>
         <li className="nav__link">ACCESSORIES</li>

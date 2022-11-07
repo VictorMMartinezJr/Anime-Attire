@@ -5,6 +5,9 @@ import Home from "./Pages/Home";
 import ProductDetails from "./Pages/ProductDetails";
 import ShopLinks from "./components/ShopLink/ShopLinks";
 import Footer from "./components/Footer/Footer";
+import Mens from "./Pages/Mens";
+import MensTees from "./Pages/MensTees";
+import MensHoodies from "./Pages/MensHoodies";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<ProductDetails />} />
+          <Route path="/mens" element={<Mens />} />
+          <Route path="/mens-tees" element={<MensTees />} />
+          <Route path="/mens-hoodies" element={<MensHoodies />} />
         </Routes>
         <ShopLinks />
         <Footer />
