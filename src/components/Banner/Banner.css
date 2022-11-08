@@ -5,10 +5,11 @@
   align-items: center;
   position: relative;
   isolation: isolate;
-  background-image: url(../../assets/demonslayer-banner.jpg);
+  background-image: url(../../assets/banner-goku.jpg);
   background-position: center;
   background-size: cover;
   color: var(--white);
+  animation: changeBG 10s infinite 0.5s;
 }
 #banner__section::after {
   content: "";
@@ -42,6 +43,24 @@
   cursor: pointer;
   margin-top: 0.5rem;
   border-radius: 5px;
+}
+
+@keyframes changeBG {
+  0% {
+    background-image: url(../../assets/banner-goku.jpg);
+  }
+  25% {
+    background-image: url(../../assets/banner-demonslayer.jpg);
+  }
+  50% {
+    background-image: url(../../assets/banner-akatsuki.jpg);
+  }
+  75% {
+    background-image: url(../../assets/banner-killua.jpg);
+  }
+  100% {
+    background-image: url(../../assets/banner-demonslayer.jpg);
+  }
 }
 
 /** Media Queries **/

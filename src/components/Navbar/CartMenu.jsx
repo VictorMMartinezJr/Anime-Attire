@@ -11,7 +11,6 @@ const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
     return acc + Number(curr.price);
   }, 0);
 
-  console.log(cartTotal);
   return (
     <div className={`nav__cart__menu ${cartMenuActive && "active"}`}>
       <div className="nav__cart__menu__header">
@@ -39,6 +38,8 @@ const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
       ) : (
         <p className="nav__cart__menu__emptytext">Cart is empty</p>
       )}
+
+      {/* Footer */}
       {cartItems.length > 0 && (
         <div className="nav__cart__menu__footer">
           <div className="nav__cart__menu__footer__total__container">
