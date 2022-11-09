@@ -1,0 +1,32 @@
+.page__details__quantity__container {
+  width: 100%;
+  margin: 1rem 0;
+}
+.page__details__quantity__actions {
+  display: flex;
+  align-items: center;
+}
+.page__details__quanitity__label {
+  margin-bottom: 0.5rem;
+}
+.page__details__quantity__btn {
+  border: none;
+  margin: 0;
+  font-size: 1.2rem;
+  border: 1px solid var(--light-grey);
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+.page__details__quantity__number {
+  height: 30px;
+  min-width: 40px;
+  border: 1px solid var(--light-grey);
+  text-align: center;
+}
+.cartpage__item__numbers {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
