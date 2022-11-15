@@ -6,6 +6,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
 
 const MensTees = () => {
+  const [title, setTitle] = useState("Mens Tees");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
 
@@ -21,14 +22,24 @@ const MensTees = () => {
 
     switch (target) {
       case "All":
-        setTransformedProducts(products);
-        break;
-      case "Hoodies":
-        newData = products.filter((product) => product.type === "hoodie");
+        newData = products.filter((p) => p.gender === "mens");
+        setTitle("Mens");
         setTransformedProducts(newData);
         break;
-      case "Tops":
-        newData = products.filter((product) => product.type === "tee");
+      case "Hoodies":
+        newData = products.filter(
+          (product) => product.gender === "mens" && product.type === "hoodie"
+        );
+        setTitle("Mens Hoodies");
+
+        setTransformedProducts(newData);
+        break;
+      case "Tees":
+        newData = products.filter(
+          (product) => product.gender === "mens" && product.type === "tee"
+        );
+        setTitle("Mens Tees");
+
         setTransformedProducts(newData);
         break;
       default:
@@ -50,7 +61,7 @@ const MensTees = () => {
       <Banner />
       <section className="page__container" id="home__section">
         <div className="page__header">
-          <h2 className="page__title page__title--mens">Mens</h2>
+          <h2 className="page__title page__title--mens">{title}</h2>
           <div className="page__filter__container">
             <button className="page__filter__labelbtn" onClick={toggleFilter}>
               <p className="page__filter">Filter</p>
@@ -69,7 +80,7 @@ const MensTees = () => {
                 className="page__filter__option"
                 onClick={handleFilterClick}
               >
-                Tops
+                Tees
               </button>
               <button
                 className="page__filter__option"

@@ -5,8 +5,8 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
 
-const Mens = () => {
-  const [title, setTitle] = useState("Mens");
+const WomensTees = () => {
+  const [title, setTitle] = useState("Womens Tees");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
 
@@ -22,22 +22,25 @@ const Mens = () => {
 
     switch (target) {
       case "All":
-        newData = products.filter((p) => p.gender === "mens");
-        setTitle("Mens");
+        newData = products.filter((p) => p.gender === "womens");
+        setTitle("Womens");
+
         setTransformedProducts(newData);
         break;
       case "Hoodies":
         newData = products.filter(
-          (product) => product.gender === "mens" && product.type === "hoodie"
+          (product) => product.gender === "womens" && product.type === "hoodie"
         );
-        setTitle("Mens Hoodies");
+        setTitle("Womens Hoodies");
+
         setTransformedProducts(newData);
         break;
       case "Tees":
         newData = products.filter(
-          (product) => product.gender === "mens" && product.type === "tee"
+          (product) => product.gender === "womens" && product.type === "tee"
         );
-        setTitle("Mens Tees");
+        setTitle("Womens Tees");
+
         setTransformedProducts(newData);
         break;
       default:
@@ -48,8 +51,10 @@ const Mens = () => {
   };
 
   useEffect(() => {
-    const mens = products.filter((p) => p.gender === "mens");
-    setTransformedProducts(mens);
+    const womensTees = products.filter(
+      (p) => p.gender === "womens" && p.type === "tee"
+    );
+    setTransformedProducts(womensTees);
   }, [products]);
 
   return (
@@ -107,4 +112,4 @@ const Mens = () => {
   );
 };
 
-export default Mens;
+export default WomensTees;
