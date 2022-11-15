@@ -9,6 +9,7 @@ import Mens from "./Pages/Mens";
 import MensTees from "./Pages/MensTees";
 import MensHoodies from "./Pages/MensHoodies";
 import CartPage from "./Pages/CartPage";
+import Accessories from "./Pages/Accessories";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/mens" element={<Mens />} />
           <Route path="/mens-tees" element={<MensTees />} />
           <Route path="/mens-hoodies" element={<MensHoodies />} />
+          <Route path="/accessories" element={<Accessories />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
         <ShopLinks />

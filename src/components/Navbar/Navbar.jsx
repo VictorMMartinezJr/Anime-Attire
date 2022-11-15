@@ -162,9 +162,14 @@ export const Navbar = () => {
             </Link>
           </ul>
         </li>
-
-        {/* Link 4 */}
-        <li className="nav__link">ACCESSORIES</li>
+        <Link
+          to="/accessories"
+          className="router__link"
+          onClick={closeNavLinks}
+        >
+          {/* Link 4 */}
+          <li className="nav__link">ACCESSORIES</li>
+        </Link>
         {/* Socials */}
         <Socials />
       </ul>
