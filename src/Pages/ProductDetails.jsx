@@ -1,7 +1,7 @@
 import "./Pages.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "../features/cart/cartSlice";
 import Quantity from "../components/Quantity/Quantity";
 
@@ -12,6 +12,8 @@ const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
+
+  const items = useSelector((state) => state.cart.cartItems);
 
   const sizeData = [
     {
@@ -56,7 +58,11 @@ const ProductDetails = () => {
 
   // Add product to cart
   const addItemToCart = () => {
-    let updatedProduct = { ...product, size: activeSize };
+    let updatedProduct = {
+      ...product,
+      size: activeSize,
+      qty: quantity,
+    };
     dispatch(addtoCart(updatedProduct));
   };
 
