@@ -10,6 +10,9 @@ import MensTees from "./Pages/MensTees";
 import MensHoodies from "./Pages/MensHoodies";
 import CartPage from "./Pages/CartPage";
 import Accessories from "./Pages/Accessories";
+import Womens from "./Pages/Womens";
+import WomensHoodies from "./Pages/WomensHoodies";
+import WomensTees from "./Pages/WomensTees";
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/mens" element={<Mens />} />
           <Route path="/mens-tees" element={<MensTees />} />
           <Route path="/mens-hoodies" element={<MensHoodies />} />
+          <Route path="/womens" element={<Womens />} />
+          <Route path="/womens-tees" element={<WomensTees />} />
+          <Route path="/womens-hoodies" element={<WomensHoodies />} />
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>

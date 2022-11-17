@@ -30,6 +30,7 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
     setSearchTerm("");
     inputField.current.focus();
   };
+
   return (
     <form
       className={`nav__search__form ${searchActive ? "active" : ""}`}

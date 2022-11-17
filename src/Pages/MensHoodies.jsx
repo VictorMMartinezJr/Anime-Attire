@@ -4,11 +4,14 @@ import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
+import { useSelector } from "react-redux";
 
 const MensHoodies = () => {
   const [title, setTitle] = useState("Mens Hoodies");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
+
+  const searchQuery = useSelector((state) => state.search.searchQuery);
 
   const { products } = useFetch("data.json");
 
@@ -43,19 +46,32 @@ const MensHoodies = () => {
     return transformedProducts;
   };
 
+  const handleSearchQuery = () => {
+    let newData = null;
+    if (searchQuery) {
+      newData = products.filter((p) =>
+        p.title.toLowerCase().includes(searchQuery)
+      );
+      setTransformedProducts(newData);
+    }
+  };
+
   useEffect(() => {
     const mensHoodies = products.filter(
       (p) => p.gender === "mens" && p.type === "hoodie"
     );
     setTransformedProducts(mensHoodies);
-  }, [products]);
+    handleSearchQuery();
+  }, [products, searchQuery]);
 
   return (
     <>
       <Banner />
       <section className="page__container" id="home__section">
         <div className="page__header">
-          <h2 className="page__title page__title--mens">{title}</h2>
+          <h2 className="page__title page__title--mens">
+            {searchQuery ? searchQuery : title}
+          </h2>
           <div className="page__filter__container">
             <button className="page__filter__labelbtn" onClick={toggleFilter}>
               <p className="page__filter">Filter</p>

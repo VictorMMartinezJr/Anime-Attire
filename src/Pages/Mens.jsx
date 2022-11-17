@@ -4,11 +4,14 @@ import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
+import { useSelector } from "react-redux";
 
 const Mens = () => {
   const [title, setTitle] = useState("Mens");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
+
+  const searchQuery = useSelector((state) => state.search.searchQuery);
 
   const { products } = useFetch("data.json");
 
@@ -47,10 +50,21 @@ const Mens = () => {
     return transformedProducts;
   };
 
+  const handleSearchQuery = () => {
+    let newData = null;
+    if (searchQuery) {
+      newData = products.filter((p) =>
+        p.title.toLowerCase().includes(searchQuery)
+      );
+      setTransformedProducts(newData);
+    }
+  };
+
   useEffect(() => {
     const mens = products.filter((p) => p.gender === "mens");
     setTransformedProducts(mens);
-  }, [products]);
+    handleSearchQuery();
+  }, [products, searchQuery]);
 
   return (
     <>
