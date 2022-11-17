@@ -1,24 +1,34 @@
 import "./Navbar.css";
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterBySearch } from "../../features/search/searchSlice";
 
 const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const searchQuery = useSelector((state) => state.search.searchQuery);
 
+  // Redux
   const dispatch = useDispatch();
+
+  const inputField = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm === "") {
+      return;
+    }
+    dispatch(filterBySearch(searchTerm));
+  };
 
   const updateSearchTerm = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(filterBySearch(searchTerm));
-    console.log("searchQuery", searchQuery);
+  // Clear Input Text
+  const handleClearInputText = () => {
+    setSearchTerm("");
+    inputField.current.focus();
   };
   return (
     <form
@@ -26,18 +36,32 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
       onSubmit={(e) => handleSubmit(e)}
     >
       <button
+        className="nav__search__form__submitbtn"
         type="submit"
         onClick={() => dispatch(filterBySearch(searchTerm))}
       >
         <CiSearch className="nav__search__input__icon" />
       </button>
-      <input
-        type="text"
-        placeholder="Search our store"
-        className="nav__search__input"
-        value={searchTerm}
-        onChange={updateSearchTerm}
-      />
+      <div className="nav__search__input__container">
+        {/* input */}
+        <input
+          type="text"
+          placeholder="Search our store"
+          className="nav__search__input"
+          value={searchTerm}
+          onChange={updateSearchTerm}
+          ref={inputField}
+        />
+        {/* clear text icon */}
+        {searchTerm !== "" && (
+          <span
+            className="nav__search__input__cleartext"
+            onClick={handleClearInputText}
+          >
+            X
+          </span>
+        )}
+      </div>
       <AiOutlineClose
         className="nav__search__input__icon"
         onClick={toggleSearchBar}
