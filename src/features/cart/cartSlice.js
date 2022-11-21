@@ -20,7 +20,10 @@ const cartSlice = createSlice({
 
       // Update quantity if item already exists || add item to cart
       if (itemToAdd) {
-        state.cartItems[itemIndex] = { ...itemToAdd, qty: itemToAdd.qty + 1 };
+        state.cartItems[itemIndex] = {
+          ...itemToAdd,
+          qty: itemToAdd.qty + action.payload.qty,
+        };
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       } else {
         state.cartItems = [...state.cartItems, action.payload];
@@ -33,7 +36,7 @@ const cartSlice = createSlice({
       );
     },
     increaseProductQuantity: (state, action) => {
-      const itemIndex = state.cartItems.findIndex(
+      const itemIndex = state.cartItems.findIndex(it 
         (item) =>
           item.id === action.payload.id && item.size === action.payload.size
       );
