@@ -2,7 +2,11 @@ import "./Pages.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart } from "../features/cart/cartSlice";
+import {
+  addtoCart,
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../features/cart/cartSlice";
 import Quantity from "../components/Quantity/Quantity";
 
 const ProductDetails = () => {
@@ -114,8 +118,14 @@ const ProductDetails = () => {
           <div className="page__details__quantity__container">
             <p className="page__details__quanitity__label">QUANTITY</p>
             <Quantity
-              subtractQuantity={subtractQuantity}
-              addQuantity={addQuantity}
+              subtractQuantity={() => {
+                setQuantity(quantity - 1);
+                dispatch(decreaseProductQuantity(product));
+              }}
+              addQuantity={() => {
+                setQuantity(quantity + 1);
+                dispatch(increaseProductQuantity(product));
+              }}
               quantity={quantity}
             />
           </div>

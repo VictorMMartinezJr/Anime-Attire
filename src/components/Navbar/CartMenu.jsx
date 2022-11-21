@@ -1,14 +1,32 @@
 import "./Navbar.css";
 import { AiOutlineClose } from "react-icons/ai";
+import {
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../../features/cart/cartSlice";
+import Quantity from "../Quantity/Quantity";
+import { useDispatch } from "react-redux";
 
 const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
+  const dispatch = useDispatch();
+
   const closeCartMenu = () => {
     setCartMenuActive(false);
   };
 
+  // // Update Quantity Functions
+  // const addQuantity = (item) => {
+  //   setQuantity(quantity + 1);
+  //   dispatch(changeCartQuantity(item));
+  // };
+  const subtractQuantity = () => {
+    if (quantity === 1) return;
+    setQuantity(quantity - 1);
+  };
+
   // Get total of all current items in cart
   const cartTotal = cartItems.reduce((acc, curr) => {
-    return acc + Number(curr.price);
+    return acc + Number(curr.price * curr.qty);
   }, 0);
 
   return (
@@ -29,7 +47,18 @@ const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
                 <div className="nav__cart__menu__info">
                   <p className="nav__cart__menu__title">{item.title}</p>
                   <p className="nav__cart__menu__size">{item.size}</p>
-                  <p className="nav__cart__menu__price">${item.price}</p>
+                  <div className="nav__cart__menu__price__container">
+                    <Quantity
+                      subtractQuantity={() => {
+                        dispatch(decreaseProductQuantity(item));
+                      }}
+                      addQuantity={() => {
+                        dispatch(increaseProductQuantity(item));
+                      }}
+                      quantity={item.qty}
+                    />
+                    <p className="nav__cart__menu__price">${item.price}</p>
+                  </div>
                 </div>
               </li>
             );
