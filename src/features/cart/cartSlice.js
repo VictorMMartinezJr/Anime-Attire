@@ -64,7 +64,7 @@ const cartSlice = createSlice({
       }
       if (product.qty - 1 === 0) {
         localStorage.removeItem("cartItems");
-        state.cartItems.pop(itemIndex);
+        state.cartItems.splice(itemIndex, 1);
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
