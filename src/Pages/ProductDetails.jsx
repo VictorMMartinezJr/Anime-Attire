@@ -120,11 +120,9 @@ const ProductDetails = () => {
             <Quantity
               subtractQuantity={() => {
                 setQuantity(quantity - 1);
-                dispatch(decreaseProductQuantity(product));
               }}
               addQuantity={() => {
                 setQuantity(quantity + 1);
-                dispatch(increaseProductQuantity(product));
               }}
               quantity={quantity}
             />

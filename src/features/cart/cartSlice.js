@@ -36,13 +36,13 @@ const cartSlice = createSlice({
       );
     },
     increaseProductQuantity: (state, action) => {
-      const itemIndex = state.cartItems.findIndex(it 
+      const itemIndex = state.cartItems.findIndex(
         (item) =>
           item.id === action.payload.id && item.size === action.payload.size
       );
+      let product = state.cartItems[itemIndex];
 
       if (itemIndex >= 0) {
-        let product = state.cartItems[itemIndex];
         state.cartItems[itemIndex] = { ...product, qty: product.qty + 1 };
         state.cartItems = [...state.cartItems];
         localStorage.removeItem("cartItems");
@@ -54,12 +54,17 @@ const cartSlice = createSlice({
         (item) =>
           item.id === action.payload.id && item.size === action.payload.size
       );
+      let product = state.cartItems[itemIndex];
 
       if (itemIndex >= 0) {
-        let product = state.cartItems[itemIndex];
         state.cartItems[itemIndex] = { ...product, qty: product.qty - 1 };
         state.cartItems = [...state.cartItems];
         localStorage.removeItem("cartItems");
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
+      if (product.qty - 1 === 0) {
+        localStorage.removeItem("cartItems");
+        state.cartItems.pop(itemIndex);
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
