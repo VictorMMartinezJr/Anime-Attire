@@ -3,12 +3,17 @@ import { CiSearch } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterBySearch } from "../../features/search/searchSlice";
+import {
+  filterBySearch,
+  setSearchError,
+} from "../../features/search/searchSlice";
+import { useEffect } from "react";
 
 const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Redux
+  // redux state
+  const searchError = useSelector((state) => state.search.searchError);
   const dispatch = useDispatch();
 
   const inputField = useRef(null);
@@ -19,6 +24,7 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
       return;
     }
     dispatch(filterBySearch(searchTerm));
+    setSearchTerm("");
   };
 
   const updateSearchTerm = (e) => {
@@ -31,9 +37,18 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
     inputField.current.focus();
   };
 
+  useEffect(() => {
+    if (searchActive) {
+      searchActive && inputField.current.focus();
+    }
+    if (!searchActive && searchError === true) {
+      dispatch(setSearchError(false));
+    }
+  }, [searchActive]);
+
   return (
     <form
-      className={`nav__search__form ${searchActive ? "active" : ""}`}
+      className={`nav__search__form ${searchActive && "active"}`}
       onSubmit={(e) => handleSubmit(e)}
     >
       <button
@@ -62,6 +77,12 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
             X
           </span>
         )}
+        {/* error text */}
+        <p
+          className={`nav__search__input__errortext ${searchError && "active"}`}
+        >
+          No results found
+        </p>
       </div>
       <AiOutlineClose
         className="nav__search__input__icon"
