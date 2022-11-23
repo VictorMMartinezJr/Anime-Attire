@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
 import { useSelector } from "react-redux";
+import { scrollToTop } from "../components/util/ScrollToTop";
 
 const MensTees = () => {
   const [title, setTitle] = useState("Mens Tees");
@@ -63,6 +64,7 @@ const MensTees = () => {
   };
 
   useEffect(() => {
+    scrollToTop();
     const mensTees = products.filter(
       (p) => p.gender === "mens" && p.type === "tee"
     );

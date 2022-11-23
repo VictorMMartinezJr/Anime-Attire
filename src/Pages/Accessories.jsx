@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
+import { scrollToTop } from "../components/util/ScrollToTop";
 
 const Accessories = () => {
   const [transformedProducts, setTransformedProducts] = useState([]);
@@ -10,6 +11,7 @@ const Accessories = () => {
   const { products } = useFetch("data.json");
 
   useEffect(() => {
+    scrollToTop();
     const accessories = products.filter((p) => p.type === "accessory");
     setTransformedProducts(accessories);
   }, [products]);

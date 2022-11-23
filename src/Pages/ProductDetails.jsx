@@ -1,13 +1,10 @@
 import "./Pages.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addtoCart,
-  increaseProductQuantity,
-  decreaseProductQuantity,
-} from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../features/cart/cartSlice";
 import Quantity from "../components/Quantity/Quantity";
+import { scrollToTop } from "../components/util/ScrollToTop";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -16,8 +13,6 @@ const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
-
-  const items = useSelector((state) => state.cart.cartItems);
 
   const sizeData = [
     {
@@ -42,10 +37,6 @@ const ProductDetails = () => {
     },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   // Fetch product to display
   const fetchProduct = async () => {
     const resp = await fetch("../data.json");
@@ -68,15 +59,6 @@ const ProductDetails = () => {
       qty: quantity,
     };
     dispatch(addtoCart(updatedProduct));
-  };
-
-  // Update Quantity Functions
-  const addQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-  const subtractQuantity = () => {
-    if (quantity === 1) return;
-    setQuantity(quantity - 1);
   };
 
   useEffect(() => {
@@ -119,6 +101,9 @@ const ProductDetails = () => {
             <p className="page__details__quanitity__label">QUANTITY</p>
             <Quantity
               subtractQuantity={() => {
+                if (quantity === 1) {
+                  return;
+                }
                 setQuantity(quantity - 1);
               }}
               addQuantity={() => {

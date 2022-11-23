@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
 import { useSelector } from "react-redux";
+import { scrollToTop } from "../components/util/ScrollToTop";
 
 const Mens = () => {
   const [title, setTitle] = useState("Mens");
@@ -61,6 +62,7 @@ const Mens = () => {
   };
 
   useEffect(() => {
+    scrollToTop();
     const mens = products.filter((p) => p.gender === "mens");
     setTransformedProducts(mens);
     handleSearchQuery();
