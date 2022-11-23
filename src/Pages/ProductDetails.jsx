@@ -41,7 +41,8 @@ const ProductDetails = () => {
   const fetchProduct = async () => {
     const resp = await fetch("../data.json");
     const data = await resp.json();
-    setProduct(data[id - 1]);
+    const product = data.filter((p) => p.id == id);
+    setProduct(product[0]);
   };
 
   // Add active class to clicked size
