@@ -2,6 +2,7 @@ import "./Footer.css";
 import { useState } from "react";
 import navLogo from "../../assets/footer-logo.png";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { Link } from "react-router-dom";
 import {
   FaFacebookF,
   FaInstagram,
@@ -29,10 +30,18 @@ const Footer = () => {
             />
           </div>
           <ul className={`footer__dropdown ${dropdownActive ? "active" : ""}`}>
-            <li className="footer__dropdown__link">NEWEST DROP</li>
-            <li className="footer__dropdown__link">MENS</li>
-            <li className="footer__dropdown__link">WOMENS</li>
-            <li className="footer__dropdown__link">ACCESSORIES</li>
+            <Link to="/new" className="router__link">
+              <li className="footer__dropdown__link">NEWEST DROP</li>
+            </Link>
+            <Link to="/mens" className="router__link">
+              <li className="footer__dropdown__link">MENS</li>
+            </Link>
+            <Link to="/womens" className="router__link">
+              <li className="footer__dropdown__link">WOMENS</li>
+            </Link>
+            <Link to="/accessories" className="router__link">
+              <li className="footer__dropdown__link">ACCESSORIES</li>
+            </Link>
           </ul>
         </ul>
         <div className="footer__socials__container">
