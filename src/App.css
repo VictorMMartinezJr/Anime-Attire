@@ -18,6 +18,9 @@ body {
   background-color: var(--white);
   font-family: "Kanit", sans-serif;
 }
+.noscroll {
+  position: fixed;
+}
 #main {
   min-height: 100vh;
   overflow-x: hidden;

@@ -7,22 +7,13 @@ import {
 import Quantity from "../Quantity/Quantity";
 import { useDispatch } from "react-redux";
 
-const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
+const CartMenu = ({
+  cartMenuActive,
+  setCartMenuActive,
+  toggleCartMenu,
+  cartItems,
+}) => {
   const dispatch = useDispatch();
-
-  const closeCartMenu = () => {
-    setCartMenuActive(false);
-  };
-
-  // // Update Quantity Functions
-  // const addQuantity = (item) => {
-  //   setQuantity(quantity + 1);
-  //   dispatch(changeCartQuantity(item));
-  // };
-  const subtractQuantity = () => {
-    if (quantity === 1) return;
-    setQuantity(quantity - 1);
-  };
 
   // Get total of all current items in cart
   const cartTotal = cartItems.reduce((acc, curr) => {
@@ -34,7 +25,7 @@ const CartMenu = ({ cartMenuActive, setCartMenuActive, cartItems }) => {
       <div className="nav__cart__menu__header">
         <p>Cart</p>
         <AiOutlineClose
-          onClick={closeCartMenu}
+          onClick={toggleCartMenu}
           className="nav__cart__menu__closeicon"
         />
       </div>

@@ -23,6 +23,17 @@ export const Navbar = () => {
   // Global Redux Cart Items
   const cartItems = useSelector((state) => state.cart.cartItems);
 
+  // Remove scrolling on body
+  const removeScrolling = (state) => {
+    if (!state) {
+      document.body.classList.add("noscroll");
+      console.log(state);
+    } else {
+      document.body.classList.remove("noscroll");
+      console.log(state);
+    }
+  };
+
   // Toggle hidden search bar
   const toggleSearchBar = () => {
     closeDropdowns();
@@ -32,13 +43,16 @@ export const Navbar = () => {
   // Toggle cart menu
   const toggleCartMenu = () => {
     setCartMenuActive(!cartMenuActive);
+    removeScrolling(cartMenuActive);
   };
 
   // Toggle navLinks & dropdowns
   const toggleNavLinks = () => {
     closeDropdowns();
     setNavLinksActive(!navLinksActive);
+    removeScrolling(navLinksActive);
   };
+
   const closeNavLinks = () => {
     closeDropdowns();
     setNavLinksActive(false);
@@ -53,7 +67,6 @@ export const Navbar = () => {
     const target = e.target.parentElement;
     const gender = target.getAttribute("data-gender");
 
-    console.log(target);
     if (gender === "mens") {
       setDropdownMensActive(!dropdownMensActive);
     }
@@ -197,6 +210,7 @@ export const Navbar = () => {
       <CartMenu
         cartMenuActive={cartMenuActive}
         setCartMenuActive={setCartMenuActive}
+        toggleCartMenu={toggleCartMenu}
         cartItems={cartItems}
       />
 
