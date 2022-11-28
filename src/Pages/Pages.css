@@ -131,7 +131,7 @@
   color: var(--white);
   border: none;
 }
-/* Details Add to cart Btn */
+/* Add to cart Btn */
 .page__details__btn__addtocart {
   width: 100%;
   padding: 1.2rem 0;
@@ -145,6 +145,12 @@
   font-size: 1rem;
   align-self: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.page__details__btn__addtocart:hover {
+  background-color: var(--white);
+  color: var(--black);
+  outline: 1px solid var(--black);
 }
 
 /** Cart Page **/
