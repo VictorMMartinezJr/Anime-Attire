@@ -7,12 +7,7 @@ import {
 import Quantity from "../Quantity/Quantity";
 import { useDispatch } from "react-redux";
 
-const CartMenu = ({
-  cartMenuActive,
-  setCartMenuActive,
-  toggleCartMenu,
-  cartItems,
-}) => {
+const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
   const dispatch = useDispatch();
 
   // Get total of all current items in cart

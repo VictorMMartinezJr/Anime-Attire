@@ -11,6 +11,7 @@ const ProductDetails = () => {
 
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [oneSizeProduct, setOneSizeProduct] = useState(false);
   const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
 
@@ -37,12 +38,23 @@ const ProductDetails = () => {
     },
   ];
 
+  // Check if item is an accessory
+  const handleAccessoryProduct = (product) => {
+    if (product.type === "accessory") {
+      setOneSizeProduct(true);
+      setActiveSize("");
+    } else {
+      return;
+    }
+  };
+
   // Fetch product to display
   const fetchProduct = async () => {
     const resp = await fetch("../data.json");
     const data = await resp.json();
     const product = data.filter((p) => p.id == id);
     setProduct(product[0]);
+    handleAccessoryProduct(product[0]);
   };
 
   // Add active class to clicked size
@@ -81,21 +93,30 @@ const ProductDetails = () => {
             <p className="details__page__price">${product.price}</p>
           </div>
           <div className="details__page__sizes" onClick={addActiveSize}>
-            {sizeData.map((s) => {
-              return (
-                <button
-                  key={s.id}
-                  className={
-                    activeSize === s.size
-                      ? "details__page__size active"
-                      : "details__page__size"
-                  }
-                  onClick={addActiveSize}
-                >
-                  {s.size}
-                </button>
-              );
-            })}
+            {!oneSizeProduct ? (
+              sizeData.map((s) => {
+                return (
+                  <button
+                    key={s.id}
+                    className={
+                      activeSize === s.size
+                        ? "details__page__size active"
+                        : "details__page__size"
+                    }
+                    onClick={addActiveSize}
+                  >
+                    {s.size}
+                  </button>
+                );
+              })
+            ) : (
+              <button
+                className="details__page__size active"
+                onClick={addActiveSize}
+              >
+                One Size
+              </button>
+            )}
           </div>
 
           <div className="page__details__quantity__container">

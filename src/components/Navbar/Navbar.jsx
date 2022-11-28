@@ -27,11 +27,13 @@ export const Navbar = () => {
   const removeScrolling = (state) => {
     if (!state) {
       document.body.classList.add("noscroll");
-      console.log(state);
     } else {
       document.body.classList.remove("noscroll");
-      console.log(state);
     }
+  };
+
+  const addScrolling = () => {
+    document.body.classList.remove("noscroll");
   };
 
   // Toggle hidden search bar
@@ -56,6 +58,7 @@ export const Navbar = () => {
   const closeNavLinks = () => {
     closeDropdowns();
     setNavLinksActive(false);
+    addScrolling();
   };
   const closeDropdowns = () => {
     setDropdownWomensActive(false);
@@ -209,7 +212,6 @@ export const Navbar = () => {
       {/* Cart Menu */}
       <CartMenu
         cartMenuActive={cartMenuActive}
-        setCartMenuActive={setCartMenuActive}
         toggleCartMenu={toggleCartMenu}
         cartItems={cartItems}
       />
