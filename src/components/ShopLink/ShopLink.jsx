@@ -11,7 +11,7 @@ const ShopLink = ({ apparelLink, linkText }) => {
         backgroundImage: `url(${apparelLink ? shopApparel : shopAccessories})`,
       }}
     >
-      <Link to="/" className="shoplink__link">
+      <Link to={apparelLink ? "/" : "/accessories"} className="shoplink__link">
         {`Shop ${linkText}`}
       </Link>
     </div>
