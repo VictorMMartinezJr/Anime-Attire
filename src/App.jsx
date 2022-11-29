@@ -13,6 +13,7 @@ import Accessories from "./Pages/Accessories";
 import Womens from "./Pages/Womens";
 import WomensHoodies from "./Pages/WomensHoodies";
 import WomensTees from "./Pages/WomensTees";
+import Newest from "./Pages/Newest";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<ProductDetails />} />
+          <Route path="/new" element={<Newest />} />
           <Route path="/mens" element={<Mens />} />
           <Route path="/mens-tees" element={<MensTees />} />
           <Route path="/mens-hoodies" element={<MensHoodies />} />

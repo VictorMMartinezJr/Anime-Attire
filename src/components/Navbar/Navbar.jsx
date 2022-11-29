@@ -97,8 +97,10 @@ export const Navbar = () => {
           className="nav__links__icon nav__links__icon--close"
           onClick={toggleNavLinks}
         />
-        {/* Link 1 */}
-        <li className="nav__link">NEWEST DROP</li>
+        <Link to="/new" className="router__link" onClick={closeNavLinks}>
+          {/* Link 1 */}
+          <li className="nav__link">NEWEST DROP</li>
+        </Link>
 
         {/* Mens Links */}
         {/* Dropdown Link */}
