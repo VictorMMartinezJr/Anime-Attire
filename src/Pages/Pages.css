@@ -6,7 +6,6 @@
   font-family: "Kanit", sans-serif;
 }
 .page__title {
-  text-align: center;
   margin-top: 2rem;
 }
 .page__title--mens {
@@ -217,6 +216,24 @@
   cursor: pointer;
   margin: 1rem 0;
 }
+
+/* * Search Page *
+.search__noresults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search__noresults__content {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search__noresults__img {
+  height: 100%;
+} */
 /** Media Queries **/
 @media screen and (min-width: 375px) {
   .page__products {

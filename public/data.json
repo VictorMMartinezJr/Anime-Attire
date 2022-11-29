@@ -45,6 +45,15 @@
     "new": true
   },
   {
+    "id": 28,
+    "title": "Chainsaw Man Dark Shadow Tee",
+    "img": "./src/assets/mensProducts/tees/chainsawman-tee.jpg",
+    "price": "16.73",
+    "type": "tee",
+    "gender": "mens",
+    "new": true
+  },
+  {
     "id": 6,
     "title": "Jujutsu Kaisen Itadori Tie Dye Tee",
     "img": "./src/assets/mensProducts/tees/itadori-tee.jpg",
@@ -208,11 +217,11 @@
   },
   {
     "id": 24,
-    "title": "Kirby Face Fingerless Gloves",
-    "img": "./src/assets/accessories/kirby-gloves.jpg",
-    "price": "11.99",
+    "title": "My Hero Academia Deku Funko Pop! Izuku Midoriya",
+    "img": "./src/assets/accessories/funko-deku.jpg",
+    "price": "11.61",
     "type": "accessory",
-    "gender": "women",
+    "gender": "unisex",
     "new": false
   },
   {
@@ -221,7 +230,7 @@
     "img": "./src/assets/accessories/jason-bag.jpg",
     "price": "31.99",
     "type": "accessory",
-    "gender": "women",
+    "gender": "unisex",
     "new": false
   },
   {
@@ -235,11 +244,29 @@
   },
   {
     "id": 27,
-    "title": "Funko POP! Naruto Shippuden Pain Figure and T-Shirt",
-    "img": "./src/assets/accessories/funko-pain.jpg",
-    "price": "29.99",
+    "title": "Funko POP! Dragon Ball Super Goku (Ultra Instinct)",
+    "img": "./src/assets/accessories/funko-gokuui.jpg",
+    "price": "15.00",
     "type": "accessory",
     "gender": "unisex",
     "new": true
+  },
+  {
+    "id": 29,
+    "title": "Banpresto Naruto Shippuden Naruto Uzumaki Figure",
+    "img": "./src/assets/accessories/figure-naruto.jpg",
+    "price": "28.90",
+    "type": "accessory",
+    "gender": "unisex",
+    "new": true
+  },
+  {
+    "id": 30,
+    "title": "Funko POP! Sanrio Kuromi",
+    "img": "./src/assets/accessories/funko-kuromi.jpg",
+    "price": "14.90",
+    "type": "accessory",
+    "gender": "unisex",
+    "new": false
   }
 ]

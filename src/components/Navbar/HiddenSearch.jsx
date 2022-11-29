@@ -24,6 +24,7 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
       return;
     }
     dispatch(filterBySearch(searchTerm));
+    location.assign(`/search`);
     setSearchTerm("");
   };
 

@@ -1,17 +1,18 @@
 import "./Pages.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
 import { useSelector, useDispatch } from "react-redux";
-import { scrollToTop } from "../components/util/ScrollToTop";
+import { scrollToProducts } from "../components/util/ScrollToProducts";
 import { setSearchError } from "../features/search/searchSlice";
 
 const Newest = () => {
   const [title, setTitle] = useState("Newest");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
+  const productsRef = useRef(null);
 
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const Newest = () => {
   };
 
   useEffect(() => {
-    scrollToTop();
+    scrollToProducts(productsRef);
     const newestProducts = products.filter((p) => p.new === true);
     setTransformedProducts(newestProducts);
     handleSearchQuery();
@@ -82,7 +83,9 @@ const Newest = () => {
       <Banner />
       <section className="page__container" id="home__section">
         <div className="page__header">
-          <h2 className="page__title page__title--mens">{title}</h2>
+          <h2 className="page__title page__title--mens" ref={productsRef}>
+            {title}
+          </h2>
           <div className="page__filter__container">
             <button className="page__filter__labelbtn" onClick={toggleFilter}>
               <p className="page__filter">Filter</p>

@@ -1,18 +1,21 @@
 import "./Pages.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
-import { useSelector } from "react-redux";
-import { scrollToTop } from "../components/util/ScrollToTop";
+import { useDispatch, useSelector } from "react-redux";
+import { scrollToProducts } from "../components/util/ScrollToProducts";
+import { setSearchError } from "../features/search/searchSlice";
 
 const MensHoodies = () => {
   const [title, setTitle] = useState("Mens Hoodies");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
+  const productsRef = useRef(null);
 
   const searchQuery = useSelector((state) => state.search.searchQuery);
+  const dispatch = useDispatch();
 
   const { products } = useFetch("data.json");
 
@@ -53,12 +56,19 @@ const MensHoodies = () => {
       newData = products.filter((p) =>
         p.title.toLowerCase().includes(searchQuery)
       );
-      setTransformedProducts(newData);
+
+      if (newData.length === 0) {
+        dispatch(setSearchError(true));
+        return;
+      } else {
+        setTransformedProducts(newData);
+        dispatch(setSearchError(false));
+      }
     }
   };
 
   useEffect(() => {
-    scrollToTop();
+    scrollToProducts(productsRef);
     const mensHoodies = products.filter(
       (p) => p.gender === "mens" && p.type === "hoodie"
     );
@@ -71,7 +81,7 @@ const MensHoodies = () => {
       <Banner />
       <section className="page__container" id="home__section">
         <div className="page__header">
-          <h2 className="page__title page__title--mens">
+          <h2 className="page__title page__title--mens" ref={productsRef}>
             {searchQuery ? searchQuery : title}
           </h2>
           <div className="page__filter__container">

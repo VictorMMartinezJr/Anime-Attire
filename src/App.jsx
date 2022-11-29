@@ -14,6 +14,7 @@ import Womens from "./Pages/Womens";
 import WomensHoodies from "./Pages/WomensHoodies";
 import WomensTees from "./Pages/WomensTees";
 import Newest from "./Pages/Newest";
+import SearchPage from "./Pages/SearchPage";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<ProductDetails />} />
+          <Route path="/product:id" element={<ProductDetails />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/new" element={<Newest />} />
           <Route path="/mens" element={<Mens />} />
           <Route path="/mens-tees" element={<MensTees />} />
