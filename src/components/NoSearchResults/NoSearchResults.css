@@ -1,0 +1,17 @@
+/** Search Page **/
+.search__noresults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search__noresults__content {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search__noresults__img {
+  height: 100%;
+}
