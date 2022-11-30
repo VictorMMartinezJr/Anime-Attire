@@ -2,20 +2,15 @@ import "./Pages.css";
 import { useEffect, useState, useRef } from "react";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useFetch from "../hooks/useFetch";
-import { useSelector, useDispatch } from "react-redux";
 import { scrollToProducts } from "../components/util/ScrollToProducts";
-import { setSearchError } from "../features/search/searchSlice";
+import PageHeader from "../components/PageHeader";
 
 const Mens = () => {
   const [title, setTitle] = useState("Mens");
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
   const productsRef = useRef(null);
-
-  const searchQuery = useSelector((state) => state.search.searchQuery);
-  const dispatch = useDispatch();
 
   const { products } = useFetch("data.json");
 
@@ -54,67 +49,23 @@ const Mens = () => {
     return transformedProducts;
   };
 
-  const handleSearchQuery = () => {
-    let newData = null;
-    if (searchQuery) {
-      newData = products.filter((p) =>
-        p.title.toLowerCase().includes(searchQuery)
-      );
-
-      if (newData.length === 0) {
-        dispatch(setSearchError(true));
-        return;
-      } else {
-        setTransformedProducts(newData);
-        dispatch(setSearchError(false));
-      }
-    }
-  };
-
   useEffect(() => {
     scrollToProducts(productsRef);
     const mens = products.filter((p) => p.gender === "mens");
     setTransformedProducts(mens);
-    handleSearchQuery();
-  }, [products, searchQuery]);
+  }, [products]);
 
   return (
     <>
       <Banner />
-      <section className="page__container" id="home__section">
-        <div className="page__header">
-          <h2 className="page__title page__title--mens" ref={productsRef}>
-            {title}
-          </h2>
-          <div className="page__filter__container">
-            <button className="page__filter__labelbtn" onClick={toggleFilter}>
-              <p className="page__filter">Filter</p>
-              <MdOutlineKeyboardArrowDown
-                className={`page__filter__arrow ${filterActive && "active"}`}
-              />
-            </button>
-            <ul className={`page__filter__options ${filterActive && "active"}`}>
-              <button
-                className="page__filter__option"
-                onClick={handleFilterClick}
-              >
-                All
-              </button>
-              <button
-                className="page__filter__option"
-                onClick={handleFilterClick}
-              >
-                Tees
-              </button>
-              <button
-                className="page__filter__option"
-                onClick={handleFilterClick}
-              >
-                Hoodies
-              </button>
-            </ul>
-          </div>
-        </div>
+      <section className="page__container" id="mens__section">
+        <PageHeader
+          productRef={productsRef}
+          title={title}
+          toggleFilter={toggleFilter}
+          filterActive={filterActive}
+          handleFilterClick={handleFilterClick}
+        />
         {/* Products */}
         <div className="page__products">
           {transformedProducts &&
