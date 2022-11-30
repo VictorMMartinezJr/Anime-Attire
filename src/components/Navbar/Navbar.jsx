@@ -40,6 +40,7 @@ export const Navbar = () => {
   const toggleSearchBar = () => {
     closeDropdowns();
     setSearchActive(!searchActive);
+    removeScrolling(searchActive);
   };
 
   // Toggle cart menu

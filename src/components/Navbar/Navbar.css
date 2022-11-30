@@ -125,9 +125,10 @@
   color: var(--white);
   font-family: inherit;
   border: none;
-  border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 .cart__icon__container {
   display: flex;
@@ -198,6 +199,11 @@
   color: var(--black);
   cursor: pointer;
 }
+.nav__icon--cart:hover,
+.nav__icon--burger:hover,
+.nav__icon--search:hover {
+  color: red;
+}
 .nav__links__icon--close {
   align-self: flex-end;
   margin: 1rem;
@@ -229,14 +235,21 @@
   height: 100%;
   background-color: var(--white);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   transform: translateY(-101%);
   transition: transform 0.2s ease-in-out;
 }
+
 .nav__search__form.active {
-  transform: translateY(1%); /* 1% to fully cover nav */
+  transform: translateY(1%);
   transition: transform 0.2s ease-in-out;
+}
+.nav__search__form__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .nav__search__form__submitbtn {
   border: none;
@@ -244,13 +257,12 @@
 .nav__search__input__container {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex: 1;
   margin: 0 1rem;
 }
 .nav__search__input {
-  height: 100%;
-  padding: 0.5rem 1rem;
   border: none;
   background-color: var(--white);
   font-family: inherit;
@@ -306,11 +318,9 @@
   }
 }
 @media screen and (min-width: 540px) {
-  .nav__search__form {
-    justify-content: space-between;
-  }
   .nav__search__input__icon {
     margin: 0 1rem;
+    font-size: 1.5rem;
   }
   .nav__search__input {
     flex: 2;
@@ -332,8 +342,8 @@
   .nav__cart__menu {
     width: 350px;
   }
-  .nav__search__input__errortext.active {
-    font-size: 1rem;
+  .nav__search__form__content {
+    width: 80%;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -342,6 +352,10 @@
   }
   .nav__icon--search {
     margin-right: 1rem;
+  }
+  /** Hidden Search **/
+  .nav__search__input {
+    font-size: 1.5rem;
   }
 
   /** Nav Links **/
