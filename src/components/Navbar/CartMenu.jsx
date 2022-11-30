@@ -6,6 +6,7 @@ import {
 } from "../../features/cart/cartSlice";
 import Quantity from "../Quantity/Quantity";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
   const dispatch = useDispatch();
@@ -66,7 +67,13 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
           <p className="nav__cart__menu__footer__smalltext">
             Shipping, taxes, and discount codes calculated at checkout
           </p>
-          <button className="nav__cart__menu__footer__btn">Checkout</button>
+          <Link
+            to="/cart"
+            className="nav__cart__menu__footer__btn"
+            onClick={toggleCartMenu}
+          >
+            <button>Checkout</button>
+          </Link>
         </div>
       )}
     </div>
