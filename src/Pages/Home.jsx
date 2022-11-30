@@ -1,9 +1,9 @@
+import "./Pages.css";
 import { useEffect, useState } from "react";
+import { scrollToTop } from "../components/util/ScrollToTop";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
-import { scrollToTop } from "../components/util/ScrollToTop";
-import "./Pages.css";
 
 const Home = () => {
   const [transformedProducts, setTransformedProducts] = useState([]);

@@ -1,10 +1,10 @@
 import "./Pages.css";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addtoCart } from "../features/cart/cartSlice";
-import Quantity from "../components/Quantity/Quantity";
 import { scrollToTop } from "../components/util/ScrollToTop";
+import Quantity from "../components/Quantity/Quantity";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();

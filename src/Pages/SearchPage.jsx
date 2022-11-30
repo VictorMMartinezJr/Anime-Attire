@@ -1,22 +1,23 @@
 import "./Pages.css";
 import { useEffect, useState, useRef } from "react";
+import { scrollToProducts } from "../components/util/ScrollToProducts";
+import NoSearchResults from "../components/NoSearchResults/NoSearchResults";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { scrollToProducts } from "../components/util/ScrollToProducts";
-import { setSearchError } from "../features/search/searchSlice";
-import NoSearchResults from "../components/NoSearchResults/NoSearchResults";
 
 const SearchPage = () => {
   const searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
   const [title] = useState(searchQuery);
   const [transformedProducts, setTransformedProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const resultsRef = useRef(null);
 
-  const dispatch = useDispatch();
-
   const { products } = useFetch("data.json");
+
+  const upperCaseTitle = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
 
   const handleSearchQuery = () => {
     let newData = null;
@@ -24,14 +25,10 @@ const SearchPage = () => {
       newData = products.filter((p) =>
         p.title.toLowerCase().includes(searchQuery)
       );
-      if (newData.length === 0) {
-        dispatch(setSearchError(true));
-        return;
-      } else {
-        setTransformedProducts(newData);
-        dispatch(setSearchError(false));
-      }
+
+      setTransformedProducts(newData);
     }
+    setIsLoading(false);
   };
 
   const productsExist = () => {
@@ -49,16 +46,20 @@ const SearchPage = () => {
       <section className="page__container" id="search__section">
         <div className="page__header">
           <h2 className="page__title page__title--mens" ref={resultsRef}>
-            {productsExist() ? title : "No Results"}
+            {productsExist() && !isLoading && upperCaseTitle(title)}
+            {!productsExist() && !isLoading && "No Results"}
+            {isLoading && upperCaseTitle(title)}
           </h2>
         </div>
         {/* Products */}
+        {isLoading && <div>Loading...</div>}
         <div
           className={`page__products ${
             productsExist() ? "" : "search__noresults"
           }`}
         >
-          {productsExist() ? (
+          {productsExist() &&
+            !isLoading &&
             transformedProducts.map((product, i) => {
               return (
                 <ProductCard
@@ -69,10 +70,8 @@ const SearchPage = () => {
                   price={product.price}
                 />
               );
-            })
-          ) : (
-            <NoSearchResults />
-          )}
+            })}
+          {!isLoading && !productsExist() && <NoSearchResults />}
         </div>
       </section>
     </>

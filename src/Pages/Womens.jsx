@@ -1,9 +1,9 @@
 import "./Pages.css";
 import { useEffect, useRef, useState } from "react";
+import { scrollToProducts } from "../components/util/ScrollToProducts";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
-import { scrollToProducts } from "../components/util/ScrollToProducts";
 import PageHeader from "../components/PageHeader";
 
 const Womens = () => {
