@@ -19,7 +19,7 @@ body {
   font-family: "Kanit", sans-serif;
 }
 .noscroll {
-  position: fixed;
+  overflow-y: hidden;
 }
 #main {
   min-height: 100vh;
