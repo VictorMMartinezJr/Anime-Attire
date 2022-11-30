@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchQuery: "",
-  searchError: false,
 };
 
 const searchSlice = createSlice({
@@ -11,9 +10,7 @@ const searchSlice = createSlice({
   reducers: {
     filterBySearch: (state, action) => {
       state.searchQuery = action.payload;
-    },
-    setSearchError: (state, action) => {
-      state.searchError = action.payload;
+      localStorage.setItem("searchQuery", JSON.stringify(state.searchQuery));
     },
   },
 });
