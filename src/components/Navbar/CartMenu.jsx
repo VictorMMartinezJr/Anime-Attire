@@ -69,10 +69,10 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
           </p>
           <Link
             to="/cart"
-            className="nav__cart__menu__footer__btn"
+            className="nav__cart__menu__footer__link"
             onClick={toggleCartMenu}
           >
-            <button>Checkout</button>
+            <button className="nav__cart__menu__footer__btn">Checkout</button>
           </Link>
         </div>
       )}
