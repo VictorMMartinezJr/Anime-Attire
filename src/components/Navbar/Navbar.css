@@ -255,10 +255,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
 }
 .nav__search__form__submitbtn {
   border: none;
+  background-color: transparent;
 }
 .nav__search__input__container {
   position: relative;
@@ -272,6 +273,7 @@
   border: none;
   background-color: var(--white);
   font-family: inherit;
+  font-size: 1rem;
 }
 .nav__search__input:focus {
   outline: none;
@@ -330,7 +332,6 @@
   }
   .nav__search__input {
     flex: 2;
-    font-size: 1rem;
   }
   .nav__links {
     width: 60%;

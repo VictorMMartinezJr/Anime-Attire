@@ -124,6 +124,9 @@
   font-family: inherit;
   border: 1px solid var(--black);
   cursor: pointer;
+  /* Safari */
+  color: var(--black);
+  background-color: var(--white);
 }
 .details__page__size.active {
   background-color: var(--black);
