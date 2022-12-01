@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "My Hero Academia Full Howl Deku Hoodie",
-    "img": "./src/assets/mensProducts/hoodies/deku-hoodie.jpg",
+    "img": "/src/assets/mensProducts/hoodies/deku-hoodie.jpg",
     "price": "49.99",
     "type": "hoodie",
     "gender": "mens",
