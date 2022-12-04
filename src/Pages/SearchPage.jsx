@@ -23,9 +23,8 @@ const SearchPage = () => {
     let newData = null;
     if (searchQuery) {
       newData = products.filter((p) =>
-        p.title.toLowerCase().includes(searchQuery)
+        p.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-
       setTransformedProducts(newData);
     }
     setIsLoading(false);
