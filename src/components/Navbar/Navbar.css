@@ -135,6 +135,8 @@
   color: var(--white);
   font-family: inherit;
   cursor: pointer;
+  border: none;
+  font-size: 1rem;
 }
 .cart__icon__container {
   display: flex;
