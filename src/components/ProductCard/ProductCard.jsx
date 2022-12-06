@@ -1,11 +1,18 @@
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ProductCard = ({ id, img, title, price }) => {
   return (
     <div className="product__card">
       <Link to={`/product${id}`}>
-        <img src={img} alt={title} className="product__card__img" />
+        <LazyLoadImage
+          effect="blur"
+          src={img}
+          alt={title}
+          className="product__card__img"
+        />
       </Link>
       <div className="product__card__info">
         <p className="product__card__title">{title}</p>
