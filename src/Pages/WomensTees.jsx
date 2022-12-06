@@ -58,6 +58,7 @@ const WomensTees = () => {
       (p) => p.gender === "womens" && p.type === "tee"
     );
     setTransformedProducts(womensTees);
+    document.activeElement.blur();
   }, [products]);
 
   return (

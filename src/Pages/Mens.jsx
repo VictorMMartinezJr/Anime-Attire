@@ -11,6 +11,7 @@ const Mens = () => {
   const [transformedProducts, setTransformedProducts] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
   const productsRef = useRef(null);
+  const sectionRef = useRef(null);
 
   const { products } = useFetch("data.json");
 
@@ -53,6 +54,7 @@ const Mens = () => {
     scrollToProducts(productsRef);
     const mens = products.filter((p) => p.gender === "mens");
     setTransformedProducts(mens);
+    document.activeElement.blur();
   }, [products]);
 
   return (
@@ -67,7 +69,7 @@ const Mens = () => {
           handleFilterClick={handleFilterClick}
         />
         {/* Products */}
-        <div className="page__products">
+        <div className="page__products" tabIndex={2}>
           {transformedProducts &&
             transformedProducts.map((product, i) => {
               return (

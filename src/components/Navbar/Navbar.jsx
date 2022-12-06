@@ -82,12 +82,13 @@ export const Navbar = () => {
   return (
     <nav id="nav">
       <Link to="/">
-        <div className="nav__title container">
+        <div className="nav__title container" aria-label="Home">
           <img src={mobileNavLogo} alt="" className="nav__logo--mobile" />
           <img
             src={navLogo}
-            alt="Kid Goku making peace sign"
+            alt="Itachi Chibi"
             className="nav__logo"
+            aria-hidden={true}
           />
         </div>
       </Link>
@@ -121,7 +122,12 @@ export const Navbar = () => {
           <ul className={`nav__dropdown ${dropdownMensActive ? "active" : ""}`}>
             {/* Dropdown Link 1 */}
             <Link to="/mens" className="router__link" onClick={closeNavLinks}>
-              <li className="nav__link nav__link--dropdown">All</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Mens apparel"
+              >
+                All
+              </li>
             </Link>
             {/* Dropdown Link 2 */}
             <Link
@@ -129,7 +135,12 @@ export const Navbar = () => {
               className="router__link"
               onClick={closeNavLinks}
             >
-              <li className="nav__link nav__link--dropdown">Tees</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Mens tees"
+              >
+                Tees
+              </li>
             </Link>
             {/* Dropdown Link 3 */}
             <Link
@@ -137,7 +148,12 @@ export const Navbar = () => {
               className="router__link"
               onClick={closeNavLinks}
             >
-              <li className="nav__link nav__link--dropdown">Hoodies</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Mens hoodies"
+              >
+                Hoodies
+              </li>
             </Link>
           </ul>
         </li>
@@ -161,7 +177,12 @@ export const Navbar = () => {
           >
             {/* Dropdown Link 1 */}
             <Link to="/womens" className="router__link" onClick={closeNavLinks}>
-              <li className="nav__link nav__link--dropdown">All</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Womens apparel"
+              >
+                All
+              </li>
             </Link>
             {/* Dropdown Link 2 */}
             <Link
@@ -169,7 +190,12 @@ export const Navbar = () => {
               className="router__link"
               onClick={closeNavLinks}
             >
-              <li className="nav__link nav__link--dropdown">Tees</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Womens tees"
+              >
+                Tees
+              </li>
             </Link>
             {/* Dropdown Link 3 */}
             <Link
@@ -177,7 +203,12 @@ export const Navbar = () => {
               className="router__link"
               onClick={closeNavLinks}
             >
-              <li className="nav__link nav__link--dropdown">Hoodies</li>
+              <li
+                className="nav__link nav__link--dropdown"
+                aria-label="Womens hoodies"
+              >
+                Hoodies
+              </li>
             </Link>
           </ul>
         </li>
@@ -195,12 +226,16 @@ export const Navbar = () => {
 
       {/* Icons  */}
       <div className="nav__icons container">
-        <CiSearch
-          className="nav__icon nav__icon--search"
+        <button
+          aria-label="Open searchbar"
           onClick={toggleSearchBar}
-        />
+          className="nav__icon__btn"
+        >
+          <CiSearch className="nav__icon nav__icon--search" />
+        </button>
         <HiOutlineMenuAlt1
           className="nav__icon nav__icon--burger"
+          focusable={false}
           onClick={toggleNavLinks}
         />
         {/* Cart Icon */}

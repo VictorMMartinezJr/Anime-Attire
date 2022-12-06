@@ -37,6 +37,7 @@ const SearchPage = () => {
   useEffect(() => {
     scrollToProducts(resultsRef);
     handleSearchQuery();
+    document.activeElement.blur();
   }, [products, searchQuery]);
 
   return (

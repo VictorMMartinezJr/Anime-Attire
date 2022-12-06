@@ -53,6 +53,7 @@ const Newest = () => {
     scrollToProducts(productsRef);
     const newestProducts = products.filter((p) => p.new === true);
     setTransformedProducts(newestProducts);
+    document.activeElement.blur();
   }, [products]);
 
   return (

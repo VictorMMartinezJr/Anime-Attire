@@ -53,6 +53,7 @@ const Womens = () => {
     scrollToProducts(productsRef);
     const womens = products.filter((p) => p.gender === "womens");
     setTransformedProducts(womens);
+    document.activeElement.blur();
   }, [products]);
 
   return (

@@ -26,10 +26,17 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
         />
       </div>
       {cartItems.length > 0 ? (
-        <ul className="nav__cart__menu__items">
+        <ul
+          className="nav__cart__menu__items"
+          tabIndex={cartItems.length > 0 ? 0 : -1}
+        >
           {cartItems.map((item, i) => {
             return (
-              <li key={i} className="nav__cart__menu__item">
+              <li
+                key={i}
+                className="nav__cart__menu__item"
+                aria-label={`${item.title} size ${item.size} price ${item.price} quantity ${item.qty} `}
+              >
                 <img src={item.img} alt="" className="nav__cart__menu__img" />
                 <div className="nav__cart__menu__info">
                   <p className="nav__cart__menu__title">{item.title}</p>
@@ -43,6 +50,8 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
                         dispatch(increaseProductQuantity(item));
                       }}
                       quantity={item.qty}
+                      itemName={item.title}
+                      itemSize={item.size}
                     />
                     <p className="nav__cart__menu__price">${item.price}</p>
                   </div>
@@ -72,7 +81,9 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
             className="nav__cart__menu__footer__link"
             onClick={toggleCartMenu}
           >
-            <button className="nav__cart__menu__footer__btn">Checkout</button>
+            <button className="nav__cart__menu__footer__btn" tabIndex={-1}>
+              Checkout
+            </button>
           </Link>
         </div>
       )}

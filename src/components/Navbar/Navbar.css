@@ -155,6 +155,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
 }
 
 /** Nav Links **/
@@ -201,6 +202,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.nav__icon__btn {
+  border: none;
+  background-color: transparent;
 }
 .nav__links__icon {
   font-size: 1rem;

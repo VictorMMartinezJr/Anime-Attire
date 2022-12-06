@@ -21,6 +21,9 @@
 .page__filter__container {
   position: relative;
 }
+.page__filter {
+  color: var(--black); /* Safari */
+}
 .page__filter__labelbtn {
   display: flex;
   justify-content: center;
@@ -37,6 +40,7 @@
   margin-left: 0.5rem;
   transform: rotate(0deg);
   transition: transform 0.2s ease-in-out;
+  color: var(--black); /* Safari */
 }
 .page__filter__arrow.active {
   transform: rotate(180deg);
@@ -64,6 +68,9 @@
   position: relative;
   margin: 0.5rem 0;
   cursor: pointer;
+  /* Safari */
+  background-color: var(--white);
+  color: var(--black);
 }
 .page__filter__option::after {
   content: "";

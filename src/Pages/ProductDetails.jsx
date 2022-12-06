@@ -132,6 +132,8 @@ const ProductDetails = () => {
                 setQuantity(quantity + 1);
               }}
               quantity={quantity}
+              itemName={product.title}
+              itemSize={activeSize}
             />
           </div>
           <button
