@@ -7,7 +7,8 @@ import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "../../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import CartMenu from "./CartMenu";
 import HiddenSearch from "./HiddenSearch";
@@ -16,12 +17,14 @@ import Socials from "./Socials";
 export const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [navLinksActive, setNavLinksActive] = useState(false);
-  const [cartMenuActive, setCartMenuActive] = useState(false);
   const [dropdownMensActive, setDropdownMensActive] = useState(false);
   const [dropdownWomensActive, setDropdownWomensActive] = useState(false);
 
   // Global Redux Cart Items
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartOpen = useSelector((state) => state.cart.cartOpen);
+
+  const dispatch = useDispatch();
 
   // Remove scrolling on body
   const removeScrolling = (state) => {
@@ -45,8 +48,8 @@ export const Navbar = () => {
 
   // Toggle cart menu
   const toggleCartMenu = () => {
-    setCartMenuActive(!cartMenuActive);
-    removeScrolling(cartMenuActive);
+    dispatch(toggleCart());
+    removeScrolling(cartOpen);
   };
 
   // Toggle navLinks & dropdowns
@@ -81,8 +84,8 @@ export const Navbar = () => {
 
   return (
     <nav id="nav">
-      <Link to="/">
-        <div className="nav__title container" aria-label="Home">
+      <Link to="/" aria-label="Home">
+        <div className="nav__title container">
           <img src={mobileNavLogo} alt="" className="nav__logo--mobile" />
           <img
             src={navLogo}
@@ -249,9 +252,9 @@ export const Navbar = () => {
 
       {/* Cart Menu */}
       <CartMenu
-        cartMenuActive={cartMenuActive}
         toggleCartMenu={toggleCartMenu}
         cartItems={cartItems}
+        cartOpen={cartOpen}
       />
 
       {/* Hidden Search */}

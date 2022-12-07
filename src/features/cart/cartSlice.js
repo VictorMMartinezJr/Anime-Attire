@@ -4,12 +4,16 @@ const initialState = {
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
+  cartOpen: false,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    toggleCart: (state) => {
+      state.cartOpen = !state.cartOpen;
+    },
     addtoCart: (state, action) => {
       // Check if item already exists in cart
       const itemIndex = state.cartItems.findIndex(
@@ -73,6 +77,7 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 export const {
+  toggleCart,
   addtoCart,
   removeFromCart,
   increaseProductQuantity,

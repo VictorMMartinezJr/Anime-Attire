@@ -1,8 +1,8 @@
 import "./Pages.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addtoCart } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addtoCart, toggleCart } from "../features/cart/cartSlice";
 import { scrollToTop } from "../components/util/ScrollToTop";
 import Quantity from "../components/Quantity/Quantity";
 
@@ -11,9 +11,12 @@ const ProductDetails = () => {
 
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [oneSizeProduct, setOneSizeProduct] = useState(false);
   const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const sizeData = [
     {
@@ -66,12 +69,18 @@ const ProductDetails = () => {
 
   // Add product to cart
   const addItemToCart = () => {
-    let updatedProduct = {
-      ...product,
-      size: activeSize,
-      qty: quantity,
-    };
-    dispatch(addtoCart(updatedProduct));
+    setIsLoading(true);
+    setTimeout(() => {
+      let updatedProduct = {
+        ...product,
+        size: activeSize,
+        qty: quantity,
+      };
+      dispatch(addtoCart(updatedProduct));
+      scrollToTop();
+      setIsLoading(false);
+      dispatch(toggleCart());
+    }, 1000);
   };
 
   useEffect(() => {
@@ -139,8 +148,9 @@ const ProductDetails = () => {
           <button
             className="page__details__btn__addtocart"
             onClick={addItemToCart}
+            disabled={isLoading}
           >
-            Add to cart
+            {isLoading ? "Adding" : "Add to cart"}
           </button>
         </div>
       </div>

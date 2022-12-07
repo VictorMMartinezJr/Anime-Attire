@@ -8,7 +8,7 @@ import Quantity from "../Quantity/Quantity";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
+const CartMenu = ({ cartOpen, toggleCartMenu, cartItems }) => {
   const dispatch = useDispatch();
 
   // Get total of all current items in cart
@@ -17,7 +17,7 @@ const CartMenu = ({ cartMenuActive, toggleCartMenu, cartItems }) => {
   }, 0);
 
   return (
-    <div className={`nav__cart__menu ${cartMenuActive && "active"}`}>
+    <div className={`nav__cart__menu ${cartOpen && "active"}`}>
       <div className="nav__cart__menu__header">
         <p>Cart</p>
         <AiOutlineClose

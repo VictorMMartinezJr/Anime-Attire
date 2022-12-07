@@ -50,6 +50,7 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
         <button
           className="nav__search__form__submitbtn"
           type="submit"
+          aria-label="Search for item"
           tabIndex={-1}
           onClick={() => dispatch(filterBySearch(searchTerm))}
         >
@@ -78,7 +79,10 @@ const HiddenSearch = ({ searchActive, toggleSearchBar }) => {
           {/* error text */}
           <p className="nav__search__input__errortext">No results found</p>
         </div>
-        <AiOutlineClose className="nav__search__input__icon" />
+        <AiOutlineClose
+          className="nav__search__input__icon"
+          onClick={toggleSearchBar}
+        />
       </div>
     </form>
   );
