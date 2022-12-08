@@ -20,6 +20,7 @@
 }
 .page__filter__container {
   position: relative;
+  z-index: 2;
 }
 .page__filter {
   color: var(--black); /* Safari */
@@ -28,10 +29,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   border: 1px solid var(--black);
   background-color: transparent;
   cursor: pointer;
+  font-size: 1rem;
 }
 .page__filter__labelbtn.active {
   border-bottom: none;
@@ -68,6 +70,8 @@
   position: relative;
   margin: 0.5rem 0;
   cursor: pointer;
+  font-size: 1rem;
+  padding-left: 0.5rem;
   /* Safari */
   background-color: var(--white);
   color: var(--black);
