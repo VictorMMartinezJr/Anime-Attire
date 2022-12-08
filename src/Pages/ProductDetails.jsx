@@ -1,10 +1,11 @@
 import "./Pages.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addtoCart, toggleCart } from "../features/cart/cartSlice";
 import { scrollToTop } from "../components/util/ScrollToTop";
 import Quantity from "../components/Quantity/Quantity";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,10 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [oneSizeProduct, setOneSizeProduct] = useState(false);
   const [activeSize, setActiveSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
-
-  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const sizeData = [
     {
@@ -53,11 +53,21 @@ const ProductDetails = () => {
 
   // Fetch product to display
   const fetchProduct = async () => {
-    const resp = await fetch("../data.json");
-    const data = await resp.json();
-    const product = data.filter((p) => p.id == id);
-    setProduct(product[0]);
-    handleAccessoryProduct(product[0]);
+    try {
+      const resp = await fetch("../data.json");
+      const data = await resp.json();
+
+      console.log(data);
+      const product = data.filter((p) => p.id == id);
+      setProduct(product[0]);
+      handleAccessoryProduct(product[0]);
+
+      if (error) {
+        setError(false);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   // Add active class to clicked size
@@ -90,70 +100,75 @@ const ProductDetails = () => {
 
   return (
     <div className="page__container" id="details__page">
-      <div className="details__page__content">
-        <img
-          src={product.img}
-          alt={product.title}
-          className="details__page__img"
-        />
-        <div className="details__page__product">
-          <div className="details__page__productinfo ">
-            <h1 className="details__page__title">{product.title}</h1>
-            <p className="details__page__price">${product.price}</p>
-          </div>
-          <div className="details__page__sizes" onClick={addActiveSize}>
-            {!oneSizeProduct ? (
-              sizeData.map((s) => {
-                return (
-                  <button
-                    key={s.id}
-                    className={
-                      activeSize === s.size
-                        ? "details__page__size active"
-                        : "details__page__size"
-                    }
-                    onClick={addActiveSize}
-                  >
-                    {s.size}
-                  </button>
-                );
-              })
-            ) : (
-              <button
-                className="details__page__size active"
-                onClick={addActiveSize}
-              >
-                One Size
-              </button>
-            )}
-          </div>
+      {/* Error message */}
+      {error && <ErrorMessage message={error} />}
+      {/* Product */}
+      {!error && (
+        <div className="details__page__content">
+          <img
+            src={product.img}
+            alt={product.title}
+            className="details__page__img"
+          />
+          <div className="details__page__product">
+            <div className="details__page__productinfo ">
+              <h1 className="details__page__title">{product.title}</h1>
+              <p className="details__page__price">${product.price}</p>
+            </div>
+            <div className="details__page__sizes" onClick={addActiveSize}>
+              {!oneSizeProduct ? (
+                sizeData.map((s) => {
+                  return (
+                    <button
+                      key={s.id}
+                      className={
+                        activeSize === s.size
+                          ? "details__page__size active"
+                          : "details__page__size"
+                      }
+                      onClick={addActiveSize}
+                    >
+                      {s.size}
+                    </button>
+                  );
+                })
+              ) : (
+                <button
+                  className="details__page__size active"
+                  onClick={addActiveSize}
+                >
+                  One Size
+                </button>
+              )}
+            </div>
 
-          <div className="page__details__quantity__container">
-            <p className="page__details__quanitity__label">QUANTITY</p>
-            <Quantity
-              subtractQuantity={() => {
-                if (quantity === 1) {
-                  return;
-                }
-                setQuantity(quantity - 1);
-              }}
-              addQuantity={() => {
-                setQuantity(quantity + 1);
-              }}
-              quantity={quantity}
-              itemName={product.title}
-              itemSize={activeSize}
-            />
+            <div className="page__details__quantity__container">
+              <p className="page__details__quanitity__label">QUANTITY</p>
+              <Quantity
+                subtractQuantity={() => {
+                  if (quantity === 1) {
+                    return;
+                  }
+                  setQuantity(quantity - 1);
+                }}
+                addQuantity={() => {
+                  setQuantity(quantity + 1);
+                }}
+                quantity={quantity}
+                itemName={product.title}
+                itemSize={activeSize}
+              />
+            </div>
+            <button
+              className="page__details__btn__addtocart"
+              onClick={addItemToCart}
+              disabled={isLoading}
+            >
+              {isLoading ? "Adding" : "Add to cart"}
+            </button>
           </div>
-          <button
-            className="page__details__btn__addtocart"
-            onClick={addItemToCart}
-            disabled={isLoading}
-          >
-            {isLoading ? "Adding" : "Add to cart"}
-          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import "./Pages.css";
 import { useEffect, useState, useRef } from "react";
 import { scrollToProducts } from "../components/util/ScrollToProducts";
-import NoSearchResults from "../components/NoSearchResults/NoSearchResults";
 import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
+import NoSearchResults from "../components/NoSearchResults/NoSearchResults";
 
 const SearchPage = () => {
   const searchQuery = JSON.parse(localStorage.getItem("searchQuery"));

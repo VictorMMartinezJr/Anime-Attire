@@ -5,6 +5,7 @@ import Banner from "../components/Banner/Banner";
 import ProductCard from "../components/ProductCard/ProductCard";
 import useFetch from "../hooks/useFetch";
 import PageHeader from "../components/PageHeader";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 
 const Womens = () => {
   const [title, setTitle] = useState("Womens");
@@ -12,7 +13,7 @@ const Womens = () => {
   const [filterActive, setFilterActive] = useState(false);
   const productsRef = useRef(null);
 
-  const { products } = useFetch("data.json");
+  const { products, error } = useFetch("data.json");
 
   const toggleFilter = () => {
     setFilterActive(!filterActive);
@@ -67,6 +68,8 @@ const Womens = () => {
           filterActive={filterActive}
           handleFilterClick={handleFilterClick}
         />
+        {/* Error message */}
+        {error && <ErrorMessage message={error} />}
         {/* Products */}
         <div className="page__products">
           {transformedProducts &&
